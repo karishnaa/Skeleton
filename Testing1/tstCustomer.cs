@@ -115,8 +115,35 @@ namespace Testing1
             //test to see that the two values are the same
             Assert.AreEqual(testData, anCustomers.Subscribed);
         }
+        [TestMethod]
+        public void FindMethodOK()
+        {
+            //CRATE AN INSTANCE OF CLASS WE WANT TO CREATE 
+            clsCustomers ancustomers = new clsCustomers();
+            //CREATE A BOOLEAN VARIABLE TO STORE THE RESULTS OF THE VALIDATION 
+            Boolean Found = false;
+            //CREATE SOME TEST DATA TO USE WITH THE METHOD 
+            Int32 CustomersID = 1;
+            //INVOKE THE METHOD
+            Found = ancustomers.Find(CustomersID);
+            //TEST TO SEE IF THE RESULT IS TRUE 
+            Assert.IsTrue(Found);   
+        }
+        [TestMethod]
+        public void TestCustomerIDFound()
+        {
+            // Create an instance of the class we want to test
+            clsCustomers anCustomers = new clsCustomers();
 
+            // Create some test data for customer ID
+            int testCustomerId = 1;
 
+            // Set the customer ID property of the instance with the test data
+            anCustomers.CustomerID = testCustomerId;
+
+            // Test if the customer ID property returns the expected value
+            Assert.AreEqual(testCustomerId, anCustomers.CustomerID);
+        }
 
 
     }
