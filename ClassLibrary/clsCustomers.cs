@@ -12,6 +12,11 @@ namespace ClassLibrary
         public string PhoneNumber { get; set; }
         public DateTime DOB { get; set; }
         public bool Subscribed { get; set; }
-        
+
+        public bool Find(int customersID)
+        {
+            //ALWAYS RETURN TRUE
+            return true;
+        }
     }
 }
