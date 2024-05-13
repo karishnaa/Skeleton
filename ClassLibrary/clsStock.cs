@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Testing3
+namespace ClassLibrary
 {
     public class clsStock
     {
