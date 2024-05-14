@@ -6,7 +6,7 @@ using System;
 namespace Testing4
 {
     [TestClass]
-    public class tstOrders
+    public class clsOrders
     {
         public object AnOrder { get; private set; }
 
