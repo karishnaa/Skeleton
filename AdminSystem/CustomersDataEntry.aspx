@@ -19,9 +19,10 @@
     <asp:Label ID="lblFullName" runat="server" style="z-index: 1; left: 589px; top: 165px; position: absolute" Text="Full Name" Font-Names="Century Gothic"></asp:Label>
     <asp:Label ID="lblPhoneNumber" runat="server" style="z-index: 1; left: 587px; top: 278px; position: absolute; margin-bottom: 0px;" Text="Phone Number" Font-Names="Century Gothic"></asp:Label>
     <asp:CheckBox ID="Subscribed" runat="server" OnCheckedChanged="CheckBox1_CheckedChanged"  Text="Subscribed" style="z-index: 1; left: 793px; top: 377px; position: absolute; width: 150px;" Font-Names="Century Gothic"></asp:CheckBox>
-    <asp:Button ID="BtnCancel" runat="server" BorderStyle="Solid" Text="Cancel" style="z-index: 1; left: 867px; top: 456px; position: absolute;" Font-Names="Century Gothic" />
+    <asp:Button ID="BtnCancel" runat="server" BorderStyle="Solid" Text="Cancel" style="z-index: 1; left: 860px; top: 456px; position: absolute; width: 67px; right: 616px;" Font-Names="Century Gothic" />
     <asp:Label ID="lblError" runat="server" Text="lblError" style="z-index: 1; left: 587px; top: 416px; position: absolute;" Font-Names="Century Gothic"></asp:Label>
     <asp:Button ID="BtnOK" runat="server" BorderStyle="Solid" Text="OK" style="z-index: 1; left: 787px; top: 456px; position: absolute; right: 182px; height: 27px;" Font-Names="Century Gothic" OnClick="BtnOK_Click" />
+    <asp:Button ID="BtnFind" runat="server" BorderStyle="Solid" Text="Find" style="z-index: 1; left:952px; top: 456px; position: absolute;" Font-Names="Century Gothic" OnClick="BtnFind_Click" />
 </form>
 
 </body>

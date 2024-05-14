@@ -137,14 +137,21 @@ namespace Testing1
             // Create a boolean variable to store the result of the validation
             bool Found = false;
 
+            bool OK = true;
+
             //CREATE SOME TEST DATA TO USE WITH THE METHOD
             int CustomerID = 2;
 
             // Invoke the method
             Found = anCustomers.Find(CustomerID);
 
+            if (anCustomers.CustomerID != 2)
+            {
+                OK = false;
+            }
+
             // Test to see if the result is true
-            Assert.IsTrue(Found);
+            Assert.IsTrue(OK);
         }
         [TestMethod]
         public void TestFullNameFound()
@@ -155,19 +162,19 @@ namespace Testing1
             // Create a boolean variable to store the result of the validation
             bool Found = false;
 
+            bool OK = true;
+
             //CREATE SOME TEST DATA TO USE WITH THE METHOD
-
-            // Create some test data for full name
-            string testFullName = "Karishna Patel";
-
-            // Set the full name property of the instance with the test data
-            anCustomers.FullName = testFullName;
+            int CustomerID = 2;
 
             // Invoke the method
-            Found = anCustomers.Find(testFullName);
+            Found = anCustomers.Find(CustomerID);
 
-            // Test to see if the result is true
-            Assert.IsTrue(Found);
+            if (anCustomers.FullName != "Karishna Patel")
+            {
+                OK = false;
+            }
+            Assert.IsTrue(OK);
         }
         [TestMethod]
         public void TestEmailAddressFound()
@@ -178,20 +185,23 @@ namespace Testing1
             // Create a boolean variable to store the result of the validation
             bool Found = false;
 
+
+            bool OK = true;
+
             //CREATE SOME TEST DATA TO USE WITH THE METHOD
-
-            // Create some test data for email address
-            string testEmailAddress = "karishna@gmail.com";
-
-            // Set the email address property of the instance with the test data
-            anCustomers.EmailAddress = testEmailAddress;
+            int CustomerID = 2;
 
             // Invoke the method
-            Found = anCustomers.Find(testEmailAddress);
+            Found = anCustomers.Find(CustomerID);
 
-            // Test to see if the result is true
-            Assert.IsTrue(Found);
+            if (anCustomers.EmailAddress != "karishna@gmail.com")
+            {
+                OK = false;
+            }
+            Assert.IsTrue(OK);
         }
+
+
         [TestMethod]
         public void TestPhoneNumberFound()
         {
@@ -201,19 +211,19 @@ namespace Testing1
             // Create a boolean variable to store the result of the validation
             bool Found = false;
 
+            bool OK = true;
+
             //CREATE SOME TEST DATA TO USE WITH THE METHOD
-
-            // Create some test data for phone number
-            string testPhoneNumber = "07895689574";
-
-            // Set the phone number property of the instance with the test data
-            anCustomers.PhoneNumber = testPhoneNumber;
+            int CustomerID = 2;
 
             // Invoke the method
-            Found = anCustomers.Find(testPhoneNumber);
+            Found = anCustomers.Find(CustomerID);
 
-            // Test to see if the result is true
-            Assert.IsTrue(Found);
+            if (anCustomers.PhoneNumber != "07895689574")
+            {
+                OK = false;
+            }
+            Assert.IsTrue(OK);
         }
         [TestMethod]
         public void TestDOBFound()
@@ -262,7 +272,7 @@ namespace Testing1
 
             // Invoke the method
             Found = anCustomers.Find(CustomerID);
-            if (anCustomers.Subscribed !=true)
+            if (anCustomers.Subscribed != true)
             {
                 OK = false;
             }
