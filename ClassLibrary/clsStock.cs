@@ -128,9 +128,9 @@ namespace ClassLibrary
             //create an instance of the data connection
             clsDataConnection DB = new clsDataConnection();
             //add the parameter for the stock id to search for
-            DB.AddParameter("@StockID", StockID);
+            DB.AddParameter("@StockID", stockID);
             //execute the stored procedure
-            DB.Execute("sproc_tblStock_FilterByStockID");
+            DB.Execute("dbo.sproc_tblStock_FilterByStockID");
             //if one record is found (there should either be one or zero)
             if (DB.Count == 1)
             {

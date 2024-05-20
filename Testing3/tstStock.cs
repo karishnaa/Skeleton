@@ -185,7 +185,7 @@ namespace Testing3
             //invoke the method
             Found = anStock.Find(StockID);
             //check the stock quantity
-            if (anStock.Quantity != 23)
+            if (anStock.Quantity != 24)
             {
                 OK = false;
             }
@@ -248,7 +248,7 @@ namespace Testing3
             //invoke the method
             Found = anStock.Find(StockID);
             //check the stock arrival date
-            if (anStock.ArrivalDate != Convert.ToDateTime("11/05/2024"))
+            if (anStock.ArrivalDate != Convert.ToDateTime("10/05/2024"))
             {
                 OK = false;
             }

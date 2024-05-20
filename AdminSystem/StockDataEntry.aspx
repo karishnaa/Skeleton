@@ -16,7 +16,7 @@
 <body>
     <form id="form1" runat="server">
         <div class="auto-style1">
-            <asp:TextBox ID="txtStockID" runat="server" OnTextChanged="TextBox1_TextChanged" style="z-index: 1; left: 385px; top: 25px; position: absolute" height="22px"></asp:TextBox>
+            <asp:TextBox ID="txtStockID" runat="server" OnTextChanged="TextBox1_TextChanged" style="z-index: 1; left: 384px; top: 19px; position: absolute" height="22px"></asp:TextBox>
         <asp:Label ID="lblStockID" runat="server" style="z-index: 1; left: 239px; top: 23px; position: absolute" Text="Stock ID" height="22px" width="74px"></asp:Label>
             <asp:TextBox ID="txtStockName" runat="server" style="z-index: 1; left: 385px; top: 66px; position: absolute" height="22px"></asp:TextBox>
         <asp:Label ID="lblStockName" runat="server" style="z-index: 1; left: 239px; top: 68px; position: absolute; width: 77px;" Text="Stock Name" height="22px"></asp:Label>
@@ -30,9 +30,13 @@
             <asp:TextBox ID="txtArrivalDate" runat="server" style="z-index: 1; left: 385px; top: 212px; position: absolute" height="22px"></asp:TextBox>
         <asp:TextBox ID="txtDescription" runat="server" style="z-index: 1; left: 385px; top: 253px; position: absolute" height="22px"></asp:TextBox>
         <asp:Label ID="lblError" runat="server" style="z-index: 1; left: 256px; top: 343px; position: absolute"></asp:Label>
-        <asp:Button ID="btnOK" runat="server" OnClick="btnOK_Click" style="z-index: 1; left: 328px; top: 400px; position: absolute" Text="OK" />
-        <asp:Button ID="btnCancel" runat="server" style="z-index: 1; left: 401px; top: 400px; position: absolute" Text="Cancel" />
+        <asp:Button ID="btnOK" runat="server" OnClick="btnOK_Click" style="z-index: 1; left: 323px; top: 400px; position: absolute; width: 38px;" Text="OK" />
+        <asp:Button ID="btnCancel" runat="server" style="z-index: 1; left: 415px; top: 399px; position: absolute" Text="Cancel" />
+        <asp:Button ID="btnFind" runat="server" style="z-index: 1; left: 560px; top: 18px; position: absolute" Text="Find" OnClick="btnFind_Click" />
             </div>
+
+       
+        
     </form>
 </body>
 </html>
