@@ -16,7 +16,7 @@ namespace Testing1
             Assert.IsNotNull(anCustomers);
         }
         [TestMethod]
-       
+
         public void ActivePropertyOK()
         {
             // create an instance of the class we want to create 
@@ -29,7 +29,6 @@ namespace Testing1
             Assert.AreEqual(anCustomers.Active, TestData);
 
         }
-
         [TestMethod]
         public void DateAddedPropertyOK()
         {
@@ -49,7 +48,7 @@ namespace Testing1
             // create an instance of the class we want to create
             clsCustomers anCustomers = new clsCustomers();
             //create some test data to assign to the property
-            int testData = 1;
+            int testData = 2;
             //assign the data to the property
             anCustomers.CustomerID = testData;
             //test to see that the two values are the same
@@ -121,13 +120,13 @@ namespace Testing1
             //CRATE AN INSTANCE OF CLASS WE WANT TO CREATE 
             clsCustomers ancustomers = new clsCustomers();
             //CREATE A BOOLEAN VARIABLE TO STORE THE RESULTS OF THE VALIDATION 
-            Boolean Found = false;
+            bool Found = false;
             //CREATE SOME TEST DATA TO USE WITH THE METHOD 
             Int32 CustomersID = 1;
             //INVOKE THE METHOD
             Found = ancustomers.Find(CustomersID);
             //TEST TO SEE IF THE RESULT IS TRUE 
-            Assert.IsTrue(Found);   
+            Assert.IsTrue(Found);
         }
         [TestMethod]
         public void TestCustomerIDFound()
@@ -135,17 +134,154 @@ namespace Testing1
             // Create an instance of the class we want to test
             clsCustomers anCustomers = new clsCustomers();
 
-            // Create some test data for customer ID
-            int testCustomerId = 1;
+            // Create a boolean variable to store the result of the validation
+            bool Found = false;
 
-            // Set the customer ID property of the instance with the test data
-            anCustomers.CustomerID = testCustomerId;
+            bool OK = true;
 
-            // Test if the customer ID property returns the expected value
-            Assert.AreEqual(testCustomerId, anCustomers.CustomerID);
+            //CREATE SOME TEST DATA TO USE WITH THE METHOD
+            int CustomerID = 2;
+
+            // Invoke the method
+            Found = anCustomers.Find(CustomerID);
+
+            if (anCustomers.CustomerID != 2)
+            {
+                OK = false;
+            }
+
+            // Test to see if the result is true
+            Assert.IsTrue(OK);
+        }
+        [TestMethod]
+        public void TestFullNameFound()
+        {
+            // Create an instance of the class we want to test
+            clsCustomers anCustomers = new clsCustomers();
+
+            // Create a boolean variable to store the result of the validation
+            bool Found = false;
+
+            bool OK = true;
+
+            //CREATE SOME TEST DATA TO USE WITH THE METHOD
+            int CustomerID = 2;
+
+            // Invoke the method
+            Found = anCustomers.Find(CustomerID);
+
+            if (anCustomers.FullName != "Karishna Patel")
+            {
+                OK = false;
+            }
+            Assert.IsTrue(OK);
+        }
+        [TestMethod]
+        public void TestEmailAddressFound()
+        {
+            // Create an instance of the class we want to test
+            clsCustomers anCustomers = new clsCustomers();
+
+            // Create a boolean variable to store the result of the validation
+            bool Found = false;
+
+
+            bool OK = true;
+
+            //CREATE SOME TEST DATA TO USE WITH THE METHOD
+            int CustomerID = 2;
+
+            // Invoke the method
+            Found = anCustomers.Find(CustomerID);
+
+            if (anCustomers.EmailAddress != "karishna@gmail.com")
+            {
+                OK = false;
+            }
+            Assert.IsTrue(OK);
         }
 
 
+        [TestMethod]
+        public void TestPhoneNumberFound()
+        {
+            // Create an instance of the class we want to test
+            clsCustomers anCustomers = new clsCustomers();
+
+            // Create a boolean variable to store the result of the validation
+            bool Found = false;
+
+            bool OK = true;
+
+            //CREATE SOME TEST DATA TO USE WITH THE METHOD
+            int CustomerID = 2;
+
+            // Invoke the method
+            Found = anCustomers.Find(CustomerID);
+
+            if (anCustomers.PhoneNumber != "07895689574")
+            {
+                OK = false;
+            }
+            Assert.IsTrue(OK);
+        }
+        [TestMethod]
+        public void TestDOBFound()
+        {
+            // Create an instance of the class we want to test
+            clsCustomers anCustomers = new clsCustomers();
+
+            // Create a boolean variable to store the result of the validation
+            bool Found = false;
+
+            // Create a boolean variable to track if the test is OK
+            bool OK = true;
+            //CREATE SOME TEST DATA TO USE WITH THE METHOD
+
+            // Hardcoded date of birth for testing
+            DateTime testDOB = new DateTime(2003, 3, 3);
+
+            // Invoke the method with the test date of birth
+            Found = anCustomers.Find(testDOB);
+
+            // Check if the DOB property of the instance matches the test date of birth
+            if (anCustomers.DOB != testDOB)
+            {
+                // If DOB doesn't match the test value, set OK to false
+                OK = false;
+            }
+
+            // Test to see if the result is true
+            Assert.IsTrue(OK);
+        }
+
+        [TestMethod]
+        public void TestSubscribedFound()
+        {
+            // Create an instance of the class we want to test
+            clsCustomers anCustomers = new clsCustomers();
+
+            // Create a boolean variable to store the result of the validation
+            bool Found = false;
+
+            // Create some test data for subscribed status
+            bool OK = true;
+
+            //CREATE SOME TEST DATA TO USE WITH THE METHOD
+            int CustomerID = 2;
+
+            // Invoke the method
+            Found = anCustomers.Find(CustomerID);
+            if (anCustomers.Subscribed != true)
+            {
+                OK = false;
+            }
+            // Test to see if the result is true
+            Assert.IsTrue(OK);
+        }
     }
 
+
 }
+
+

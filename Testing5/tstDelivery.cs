@@ -5,9 +5,14 @@ using System;
 namespace Testing5
 {
     [TestClass]
-    public class tstDelivery
+    public class clsDelivery
     {
         public object AnDelivery { get; private set; }
+        public int DeliveryID { get; private set; }
+        public int OrderID { get; private set; }
+        public string DeliveryAddress { get; private set; }
+        public DateTime DateOfDelivery { get; private set; }
+        public bool Dispatched { get; private set; }
 
         [TestMethod]
         public void InstanceOK()

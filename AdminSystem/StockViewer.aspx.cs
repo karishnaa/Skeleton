@@ -20,5 +20,6 @@ public partial class _1Viewer : System.Web.UI.Page
         Response.Write(anStock.Quantity);
         Response.Write(anStock.Available);
         Response.Write(anStock.Description);
+        Response.Write(anStock.ArrivalDate);
     }
 }
