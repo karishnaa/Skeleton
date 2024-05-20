@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Diagnostics;
+using System.Reflection.Emit;
 
 namespace ClassLibrary
 {
@@ -121,19 +122,35 @@ namespace ClassLibrary
                 mArrivalDate = value; 
             }
         }
-
+        /** FIND METHOD **/
         public bool Find(int stockID)
         {
-            //set the private data to the test data values
-            mStockID = 1;
-            mStockName = "Nike Hoodie";
-            mPrice = 39.99;
-            mQuantity = 23;
-            mAvailable = true;
-            mDescription = "Comfortable Nike Hoodie";
-            mArrivalDate = Convert.ToDateTime("11/05/2024");
-            //always return true
-            return true;
+            //create an instance of the data connection
+            clsDataConnection DB = new clsDataConnection();
+            //add the parameter for the stock id to search for
+            DB.AddParameter("@StockID", StockID);
+            //execute the stored procedure
+            DB.Execute("sproc_tblStock_FilterByStockID");
+            //if one record is found (there should either be one or zero)
+            if (DB.Count == 1)
+            {
+                //set the private data to the test data values
+                mStockID = Convert.ToInt32(DB.DataTable.Rows[0]["StockID"]);
+                mStockName = Convert.ToString(DB.DataTable.Rows[0]["StockName"]);
+                mPrice = Convert.ToDouble(DB.DataTable.Rows[0]["Price"]);
+                mQuantity = Convert.ToInt32(DB.DataTable.Rows[0]["Quantity"]);
+                mAvailable = Convert.ToBoolean(DB.DataTable.Rows[0]["Available"]);
+                mDescription = Convert.ToString(DB.DataTable.Rows[0]["Description"]);
+                mArrivalDate = Convert.ToDateTime(DB.DataTable.Rows[0]["ArrivalDate"]);
+                //return that everything worked OK
+                return true;
+            }
+            //if no record was found
+            else
+            {
+                //return false indicating there is a problem
+                return false;
+            }
         }
     }
 }
