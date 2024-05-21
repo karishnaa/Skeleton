@@ -30,9 +30,9 @@
             <asp:TextBox ID="txtArrivalDate" runat="server" style="z-index: 1; left: 385px; top: 212px; position: absolute" height="22px"></asp:TextBox>
         <asp:TextBox ID="txtDescription" runat="server" style="z-index: 1; left: 385px; top: 253px; position: absolute" height="22px"></asp:TextBox>
         <asp:Label ID="lblError" runat="server" style="z-index: 1; left: 256px; top: 343px; position: absolute"></asp:Label>
-        <asp:Button ID="btnOK" runat="server" OnClick="btnOK_Click" style="z-index: 1; left: 323px; top: 400px; position: absolute; width: 38px;" Text="OK" />
+        <asp:Button ID="btnOK" runat="server" OnClick="btnOK_Click" style="z-index: 1; left: 317px; top: 400px; position: absolute; width: 38px;" Text="OK" />
         <asp:Button ID="btnCancel" runat="server" style="z-index: 1; left: 415px; top: 399px; position: absolute" Text="Cancel" />
-        <asp:Button ID="btnFind" runat="server" style="z-index: 1; left: 560px; top: 18px; position: absolute" Text="Find" OnClick="btnFind_Click" />
+        <asp:Button ID="btnFind2" runat="server" style="z-index: 1; left: 560px; top: 18px; position: absolute" Text="Find" OnClick="btnFind_Click2" />
             </div>
 
        

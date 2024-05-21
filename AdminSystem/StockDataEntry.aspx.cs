@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Cryptography.X509Certificates;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
@@ -22,17 +23,37 @@ public partial class _1_DataEntry : System.Web.UI.Page
     {
         //create a new instance of clsStock
         clsStock anStock = new clsStock();
-        //capture the data
-        anStock.StockName = txtStockName.Text;
-        anStock.Quantity = Convert.ToInt32(txtQuantity.Text);
-        anStock.Price = Math.Round(float.Parse(txtPrice.Text), 2);
-        anStock.Description = txtDescription.Text;
-        anStock.Available = chkAvailable.Checked;
-        // FIX THISSSSSSSSSSSSSSSSSSSSSSSSSSSSSSS   anStock.ArrivalDate = Convert.ToDateTime(txtArrivalDate.Text);
-        //store the data in the session object
-        Session["anStock"] = anStock;
-        //navigate to the view page
-        Response.Redirect("StockViewer.aspx");
+        //create test data
+        string StockName = txtStockName.Text;
+        string Quantity = txtQuantity.Text;
+        string Price = txtPrice.Text;
+        string ArrivalDate = txtArrivalDate.Text;
+        string Description = txtDescription.Text;
+        string Available = chkAvailable.Text;
+
+        //variable to store any error messages
+        String Error = "";
+        //validate the data
+        Error = anStock.Valid(StockName, Quantity, Price, ArrivalDate, Description, Available);
+        if (Error == "")
+        {
+            //capture the data
+            anStock.StockName = txtStockName.Text;
+            anStock.Quantity = Convert.ToInt32(txtQuantity.Text);
+            anStock.Price = Math.Round(float.Parse(txtPrice.Text), 2);
+            anStock.Description = txtDescription.Text;
+            anStock.Available = chkAvailable.Checked;
+            anStock.ArrivalDate = Convert.ToDateTime(txtArrivalDate.Text);
+            //store the data in the session object
+            Session["anStock"] = anStock;
+            //navigate to the view page
+            Response.Redirect("StockViewer.aspx");
+        }
+        else
+        {
+            //display the error message
+            lblError.Text = Error;
+        }
     }
 
     protected void txtQuantity_TextChanged(object sender, EventArgs e)
@@ -42,7 +63,7 @@ public partial class _1_DataEntry : System.Web.UI.Page
 
 
 
-    protected void btnFind_Click(object sender, EventArgs e)
+    protected void btnFind_Click2(object sender, EventArgs e)
     {
         //create an instance of the stock class
         clsStock anStock = new clsStock();
@@ -65,7 +86,7 @@ public partial class _1_DataEntry : System.Web.UI.Page
             txtArrivalDate.Text = anStock.ArrivalDate.ToString();
             chkAvailable.Text = anStock.Available.ToString();
 
-        } 
+        }
     }
 
 }
