@@ -71,7 +71,7 @@ namespace ClassLibrary
             set
             {
                 //this line of code allows data into the property
-                mStockID = value;
+                mQuantity = value;
             }
         }
         //private data member for the available property
@@ -151,6 +151,46 @@ namespace ClassLibrary
                 //return false indicating there is a problem
                 return false;
             }
+        }
+
+        public string Valid(string StockName, string Quantity, string Price, string ArrivalDate, string Description, string Available)
+        {
+            //create a string variable to store the error
+            String Error = "";
+            DateTime DateTemp;
+            //if the stockname is blank
+            if (StockName.Length == 0) 
+            {
+                //record the error
+                Error = Error + "The Stock Name may not be blank";
+
+            }
+            //if the stockname is more than 50 characters 
+            if (StockName.Length > 50) 
+            {
+                //record the error
+                Error = Error + "The Stock Name may not be more than 50 characters";
+
+            }
+            try
+            {
+                //copy the arrival date to the datetemp variable
+                DateTemp = Convert.ToDateTime(ArrivalDate);
+                //check to see if the data is greater than today's date
+                if (DateTemp > DateTime.Now.Date)
+                {
+                    Error = Error + "The date cannot be in the future";
+                }
+                //return any error message
+                return Error;
+            }
+            catch
+            {
+                //record the error
+                Error = Error + "The date was not a valid date";
+            }
+            //return any error messages
+            return Error;
         }
     }
 }
