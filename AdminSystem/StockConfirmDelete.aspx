@@ -8,8 +8,10 @@
 </head>
 <body>
     <form id="form1" runat="server">
-        <div class ="Stock Confirm Delete">
-            <button>confirm delete</button>
+        <div class="StockConfirmDelete">
+            <asp:Label ID="lblConfirmation" runat="server" Text="Are you sure you want to delete this record?" /><br />
+            <asp:Button ID="btnDeleteY" runat="server" Text="Yes" OnClick="btnDeleteY_Click" />
+            <asp:Button ID="btnDeleteN" runat="server" Text="No" OnClick="btnDeleteN_Click" />
         </div>
     </form>
 </body>

@@ -4,14 +4,7 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
-    <title></title>
-    <style type="text/css">
-        .auto-style1 {
-            text-align: center;
-            height: 482px;
-            width: 801px;
-        }
-    </style>
+    <title>Data Entry</title>
 </head>
 <body>
     <form id="form1" runat="server">
