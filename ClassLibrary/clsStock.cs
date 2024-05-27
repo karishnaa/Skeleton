@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Data;
 using System.Diagnostics;
 using System.Reflection.Emit;
 
@@ -191,6 +192,28 @@ namespace ClassLibrary
             }
             //return any error messages
             return Error;
+        }
+        /************************ STATISTICS GROUPED BY PRICE METHOD ******************************/
+        public DataTable StatisticsGroupedByPrice()
+        {
+            //create an instance of the data connection
+            clsDataConnection DB = new clsDataConnection();
+            //execute the stored procedure
+            DB.Execute("sproc_tblStock_Count_GroupByPrice");
+            //there should be either zero one or many records
+            return DB.DataTable;
+
+        }
+        /************************ STATISTICS GROUPED BY QUANTITY METHOD ******************************/
+        public DataTable StatisticsGroupedByQuantity()
+        {
+            //create an instance of the data connection
+            clsDataConnection DB = new clsDataConnection();
+            //execute the stored procedure
+            DB.Execute("sproc_tblStock_Count_GroupByQuantity");
+            //there should be either zero one or many records
+            return DB.DataTable;
+
         }
     }
 }
