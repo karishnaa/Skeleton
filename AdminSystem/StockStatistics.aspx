@@ -17,13 +17,14 @@
             <h3>
                 Stock List- Grouped by Price
             </h3>
-            <asp:GridView ID="GridViewStGroupByPrice" runat="server" OnSelectedIndexChanged="GridViewStGroupByPrice_SelectedIndexChanged"></asp:GridView>
+            <asp:GridView ID="GridViewStGroupByPrice" runat="server" ></asp:GridView>
         </div>
         <div>
             <h3>
                 Stock List- Grouped by Quantity
             </h3>
             <asp:GridView ID="GridViewStGroupByQuantity" runat="server"></asp:GridView>
+            <asp:Button runat="server" Text="Back to Stock List" ID="btnBack" OnClick="btnBack_Click"></asp:Button>
         </div>
     </form>
 </body>

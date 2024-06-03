@@ -88,40 +88,39 @@ public partial class _1_DataEntry : System.Web.UI.Page
 
     protected void btnFind_Click2(object sender, EventArgs e)
     {
-        //create an instance of the stock class
-        clsStock anStock = new clsStock();
-        //create a variable to store the primary key
-        Int32 StockID;
-        //create a variable to store the result of the find operation
-        Boolean Found = false;
-        //get the primary key entered by the user
-        StockID = Convert.ToInt32(txtStockID.Text);
-        //find the record  
-        Found = anStock.Find(StockID);
-        //if found
-        if (Found == true)
+        try
         {
-            //display the values of the properties in the form
-            txtStockName.Text = anStock.StockName;
-            txtQuantity.Text = anStock.Quantity.ToString();
-            txtPrice.Text = anStock.Price.ToString();
-            txtDescription.Text = anStock.Description.ToString();
-            txtArrivalDate.Text = anStock.ArrivalDate.ToShortDateString();
-            chkAvailable.Text = anStock.Available.ToString();
+            //create an instance of the stock class
+            clsStock anStock = new clsStock();
+            //create a variable to store the primary key
+            Int32 StockID;
+            //create a variable to store the result of the find operation
+            Boolean Found = false;
+            //get the primary key entered by the user
+            StockID = Convert.ToInt32(txtStockID.Text);
+            //find the record  
+            Found = anStock.Find(StockID);
+            //if found
+            if (Found == true)
+            {
+                //display the values of the properties in the form
+                txtStockName.Text = anStock.StockName;
+                txtQuantity.Text = anStock.Quantity.ToString();
+                txtPrice.Text = anStock.Price.ToString();
+                txtDescription.Text = anStock.Description.ToString();
+                txtArrivalDate.Text = anStock.ArrivalDate.ToShortDateString();
+                chkAvailable.Checked = anStock.Available;
 
+            }
+        }
+        catch
+        {
+            //update the error message
+            lblError.Text = "Enter a valid StockID";
         }
     }
 
 
-    protected void TextBox1_TextChanged(object sender, EventArgs e)
-    {
-
-    }
-
-    protected void txtQuantity_TextChanged(object sender, EventArgs e)
-    {
-
-    }
     void DisplayStock()
     {
         //create an instance of the stocks
@@ -135,7 +134,22 @@ public partial class _1_DataEntry : System.Web.UI.Page
         txtPrice.Text = stocks.ThisStock.Price.ToString();
         txtDescription.Text = stocks.ThisStock.Description.ToString();
         txtArrivalDate.Text = stocks.ThisStock.ArrivalDate.ToShortDateString();
-        chkAvailable.Text = stocks.ThisStock.Available.ToString();
+        chkAvailable.Checked = stocks.ThisStock.Available;
+
+    }
+
+    protected void btnCancel_Click(object sender, EventArgs e)
+    {
+        //redirect to the stock list page
+        Response.Redirect("StockList.aspx");
+    }
+
+
+
+    protected void btnReturnToMM_Click(object sender, EventArgs e)
+    {
+        //redirect to the team main menu
+        Response.Redirect("TeamMainMenu.aspx");
 
     }
 }
