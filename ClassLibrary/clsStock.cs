@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Data;
 using System.Diagnostics;
+using System.Globalization;
 using System.Reflection.Emit;
 
 namespace ClassLibrary
@@ -123,6 +124,7 @@ namespace ClassLibrary
                 mArrivalDate = value; 
             }
         }
+        
         /** FIND METHOD **/
         public bool Find(int stockID)
         {
@@ -159,20 +161,23 @@ namespace ClassLibrary
             //create a string variable to store the error
             String Error = "";
             DateTime DateTemp;
+            float PriceTemp;
+            int QuantityTemp;
             //if the stockname is blank
             if (StockName.Length == 0) 
             {
                 //record the error
-                Error = Error + "The Stock Name may not be blank";
+                Error = Error + " The Stock Name may not be blank";
 
             }
             //if the stockname is more than 50 characters 
             if (StockName.Length > 50) 
             {
                 //record the error
-                Error = Error + "The Stock Name may not be more than 50 characters";
+                Error = Error + " The Stock Name may not be more than 50 characters";
 
             }
+            //validation for ArrivalDate
             try
             {
                 //copy the arrival date to the datetemp variable
@@ -180,15 +185,70 @@ namespace ClassLibrary
                 //check to see if the data is greater than today's date
                 if (DateTemp > DateTime.Now.Date)
                 {
-                    Error = Error + "The date cannot be in the future";
+                    Error = Error + " The date cannot be in the future";
                 }
-                //return any error message
-                return Error;
+                
             }
             catch
             {
                 //record the error
-                Error = Error + "The date was not a valid date";
+                Error = Error + " The date was not a valid date";
+            }
+            //validation for Price
+            try
+            {
+                //convert to float
+                PriceTemp = float.Parse(Price);
+                
+                //check to see if the data is less than 0
+                if (PriceTemp < 0)
+                {
+                    //record the error
+                    Error = Error + " The price cannot be below 0";
+                }
+                //check to see if the data is more than 100,000
+                if (PriceTemp > 100000)
+                {
+                    //record the error
+                    Error = Error + " The price cannot be above 100,000";
+                }
+            }
+            catch //catch out all non float data
+            {
+                //record the error
+                Error = Error + " The price was not a valid price";
+            }
+            //validation for Quantity
+            try
+            {
+                //convert to integer
+                QuantityTemp = Convert.ToInt32(Quantity);
+
+                //check to see if the data is less than 0
+                if (QuantityTemp < 0)
+                {
+                    //record the error
+                    Error = Error + " The Quantity cannot be below 0";
+                }
+                //check to see if the data is more than 10,000
+                if (QuantityTemp > 10000)
+                {
+                    //record the error
+                    Error = Error + " The quantity cannot be above 10,000";
+                }
+            }
+            catch //catch out all non integer datatypes
+            {
+                //record the error
+                Error = Error + " The quantity was not a valid number";
+            }
+           
+            //validation for Description
+            //check if there is more than 50 characters 
+            if (Description.Length > 50)
+            {
+                //record the error
+                Error = Error + " The description may not be more than 50 characters";
             }
             //return any error messages
             return Error;

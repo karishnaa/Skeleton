@@ -69,7 +69,7 @@ public partial class _1_List : System.Web.UI.Page
         //variable to store the primary key value of the record to be deleted
         Int32 StockID;
         //if a record has been selected from the list
-        if (lstStockList1.SelectedIndex != 1)
+        if (lstStockList1.SelectedIndex != -1)
         {
             //get the primary key value of the record delete
             StockID = Convert.ToInt32(lstStockList1.SelectedValue);
@@ -77,6 +77,11 @@ public partial class _1_List : System.Web.UI.Page
             Session["StockID"] = StockID;
             //redirect to the delete page
             Response.Redirect("StockConfirmDelete.aspx");
+        }
+        else
+        {
+            //if no record has been selected
+            lblError.Text = "Please select a record from the list to delete";
         }
     }
 
@@ -112,5 +117,20 @@ public partial class _1_List : System.Web.UI.Page
         lstStockList1.DataTextField = "StockName";
         //bind the data to the list
         lstStockList1.DataBind();
+    }
+
+    protected void btnStats_Click(object sender, EventArgs e)
+    {
+        //redirect to the statistics page
+        Response.Redirect("StockStatistics.aspx");
+    }
+
+
+
+    protected void btnReturnToMM_Click(object sender, EventArgs e)
+    {
+        //redirect to the team main menu
+        Response.Redirect("TeamMainMenu.aspx");
+
     }
 }
