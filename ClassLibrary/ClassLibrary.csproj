@@ -41,8 +41,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="clsOrderCollection.cs" />
-    <Compile Include="clsDeliveryCollection.cs" />
+
     <Compile Include="clsDelivery.cs" />
     <Compile Include="clsCustomers.cs" />
     <Compile Include="clsDataConnection.cs" />
@@ -51,6 +50,9 @@
     <Compile Include="clsStock.cs" />
     <Compile Include="clsStockCollection.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="ClassDiagram1.cd" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
