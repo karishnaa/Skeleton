@@ -10,11 +10,13 @@ public partial class _1Viewer : System.Web.UI.Page
 {
     protected void Page_Load(object sender, EventArgs e)
     {
-        //create a new instance of clsCustomer
-        clsCustomers anCustomer = new clsCustomers();
-        // Capture the Customer 
-        anCustomer = (clsCustomers)Session["anCustomer"];
-        //store the address in the session object 
-        Response.Write(anCustomer.FullName);
+        clsCustomers anCustomers = new clsCustomers();
+        anCustomers = (clsCustomers)Session["anCustomers"];
+        Response.Write(anCustomers.CustomerID);
+        Response.Write(anCustomers.FullName);
+        Response.Write(anCustomers.EmailAddress);
+        Response.Write(anCustomers.PhoneNumber);
+        Response.Write(anCustomers.DOB);
+        Response.Write(anCustomers.Subscribed);
     }
 }
