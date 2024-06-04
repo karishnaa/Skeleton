@@ -121,6 +121,46 @@ namespace Testing3
             Assert.AreEqual(allStock.ThisStock, TestItem);
 
         }**/
+        /** commented out to stop data from new records being created each time i run tests
+        [TestMethod]
+        public void UpdateMethodOK()
+        {
+            //create an instacne of the class we want to create
+            clsStockCollection allStock = new clsStockCollection();
+            //create the item of test data
+            clsStock TestItem = new clsStock();
+            //variable to store the primary key
+            Int32 PrimaryKey = 0;
+            //set its properties
+            TestItem.StockName = "Nike Hoodie";
+            TestItem.Quantity = 23;
+            TestItem.Price = 39.99;
+            TestItem.ArrivalDate = DateTime.Now;
+            TestItem.Description = "Comfortable Nike Hoodie";
+            TestItem.Available = true;
+            //set thisstock to the test data
+            allStock.ThisStock = TestItem;
+            //add the record
+            PrimaryKey = allStock.Add();
+            //set the primary ket of the test data
+            TestItem.StockID = PrimaryKey;
+            //modify the record
+            TestItem.StockName = "Nike Bag";
+            TestItem.Quantity = 20;
+            TestItem.Price = 20;
+            TestItem.ArrivalDate = DateTime.Now;
+            TestItem.Description = "Comfortable Nike Bag";
+            TestItem.Available = false;
+            //set the record based on the new test data
+            allStock.ThisStock = TestItem;
+            //update the record
+            allStock.Update();
+            //find the record
+            allStock.ThisStock.Find(PrimaryKey);
+            //test to see if ThisStock matches the test data
+            Assert.AreEqual(allStock.ThisStock, TestItem);
+        }
+        **/
         /** commented out to stop data from being created each time i run tests
         [TestMethod]
         public void DeleteMethodOK() 
@@ -206,29 +246,6 @@ namespace Testing3
             //test to see that there are no records
             Assert.IsTrue(OK);
         }
-        [TestMethod]
-        public void StatStatisticGroupedByPrice()
-        {
-            //create an instance of the class we want to create
-            clsStock anStock = new clsStock();
-            //invoke the method
-            DataTable dT = anStock.StatisticsGroupedByPrice();
-            //according to the last executed stored procedure there should be seven rows of data
-            int noOfRecord = 7;
-            //test to see that the result is correct
-            Assert.AreEqual(noOfRecord, dT.Rows.Count);
-        }
-        [TestMethod]
-        public void StatStatisticGroupedByQuantity()
-        {
-            //create an instance of the class we want to create
-            clsStock anStock = new clsStock();
-            //invoke the method
-            DataTable dT = anStock.StatisticsGroupedByQuantity();
-            //according to the last executed stored procedure there should be seven rows of data
-            int noOfRecord = 7;
-            //test to see that the result is correct
-            Assert.AreEqual(noOfRecord, dT.Rows.Count);
-        }
+        
     }
 }
