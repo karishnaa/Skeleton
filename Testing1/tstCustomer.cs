@@ -578,6 +578,17 @@ namespace Testing1
             //String variable to store any error message
             String Error = "";
             string EmailAddress = new string('a', 242) + "@aaaaaa.com"; // maximum length minus one
+            Error = anCustomers.Valid(FullName, EmailAddress, PhoneNumber, DOB);
+            Assert.AreEqual(Error, "");
+        }
+        [TestMethod]
+        public void EmailMinLessOne()
+        {
+            // Create an instance of the clsCustomers class
+            clsCustomers anCustomers = new clsCustomers();
+            //String variable to store any error message
+            String Error = "";
+            string EmailAddress = "a@b"; // less than minimum length
             Error = anCustomers.Valid(FullName, EmailAddress, PhoneNumber, DOB.ToString());
             Assert.AreEqual(Error, "");
         }
