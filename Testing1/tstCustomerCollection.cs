@@ -33,7 +33,7 @@ namespace Testing1
                 TestItem.FullName = "Karishna";
                 TestItem.EmailAddress = "Karishna@gmail.com";
                 TestItem.PhoneNumber = "01854956825";
-                TestItem.DOB = Convert.ToDateTime("10/05/2024");
+                TestItem.DOB = Convert.ToDateTime("10/05/2004");
                 TestItem.Subscribed = true;
                 // add the test item to the test list 
                 TestList.Add(TestItem);
@@ -56,7 +56,7 @@ namespace Testing1
                 TestCustomers.FullName = "Karishna";
                 TestCustomers.EmailAddress = "Karishna@gmail.com";
                 TestCustomers.PhoneNumber = "01854956825";
-                TestCustomers.DOB = Convert.ToDateTime("10/05/2024");
+                TestCustomers.DOB = Convert.ToDateTime("10/05/2004");
                 TestCustomers.Subscribed = true;
                 //assign the data to the property
                 allCustomers.ThisCustomers = TestCustomers;
@@ -77,7 +77,7 @@ namespace Testing1
                 TestItem.FullName = "Karishna";
                 TestItem.EmailAddress = "Karishna@gmail.com";
                 TestItem.PhoneNumber = "01854956825";
-                TestItem.DOB = Convert.ToDateTime("10/05/2024");
+                TestItem.DOB = Convert.ToDateTime("10/05/2004");
                 TestItem.Subscribed = true;
                 // Add the test item to the test list 
                 TestList.Add(TestItem);
@@ -100,7 +100,7 @@ namespace Testing1
                 TestItem.FullName = "Karishna Patel";
                 TestItem.EmailAddress = "karishna@gmail.com";
                 TestItem.PhoneNumber = "01854956825";
-                TestItem.DOB = Convert.ToDateTime("10/05/2024");
+                TestItem.DOB = Convert.ToDateTime("10/05/2004");
                 TestItem.Subscribed = true;
                 // set ThisCustomers to the test data
                 allCustomers.ThisCustomers = TestItem;
@@ -127,7 +127,7 @@ namespace Testing1
                 TestItem.FullName = "Karishna Patel";
                 TestItem.EmailAddress = "karishna@gmail.com";
                 TestItem.PhoneNumber = "01854956825";
-                TestItem.DOB = Convert.ToDateTime("10/05/2024");
+                TestItem.DOB = Convert.ToDateTime("10/05/2004");
                 TestItem.Subscribed = true;
                 // set ThisCustomers to the test data
                 allCustomers.ThisCustomers = TestItem;
@@ -139,7 +139,7 @@ namespace Testing1
                 TestItem.FullName = "Karishna Patel";
                 TestItem.EmailAddress = "karishnap@outlook.com";
                 TestItem.PhoneNumber = "0748578958421";
-                TestItem.DOB = Convert.ToDateTime("10/05/2024");
+                TestItem.DOB = Convert.ToDateTime("10/05/2004");
                 TestItem.Subscribed = true;
                 // set the record based on the new test data 
                 allCustomers.ThisCustomers = TestItem;
@@ -164,7 +164,7 @@ namespace Testing1
                 TestItem.FullName = "Karishna Patel";
                 TestItem.EmailAddress = "karishna@gmail.com";
                 TestItem.PhoneNumber = "01854956825";
-                TestItem.DOB = Convert.ToDateTime("10/05/2024");
+                TestItem.DOB = Convert.ToDateTime("10/05/2004");
                 TestItem.Subscribed = true;
                 // set thiscustomers to the test data 
                 allCustomers.ThisCustomers = TestItem;
@@ -175,7 +175,7 @@ namespace Testing1
                 TestItem.FullName = "Karishna Patel";
                 TestItem.EmailAddress = "karishnap@outlook.com";
                 TestItem.PhoneNumber = "0748578958421";
-                TestItem.DOB = Convert.ToDateTime("10/05/2024");
+                TestItem.DOB = Convert.ToDateTime("10/05/2004");
                 TestItem.Subscribed = true;
                 // set thiscustomers to the test data 
                 allCustomers.ThisCustomers = TestItem;
