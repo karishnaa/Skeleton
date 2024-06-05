@@ -8,11 +8,9 @@
 </head>
 <body>
     <form id="form1" runat="server">
-       <div class="OrdersDelete">
-    <asp:Label ID="lblOrdersDelete" runat="server" Text="You wanna delete this order?" /><br />
-    <asp:Button ID="btnDeleteYes" runat="server" Text="Yes" OnClick="btnDeleteYes_onClick" />
-    <asp:Button ID="btnDeleteNno" runat="server" Text="No" OnClick="btnDeleteNo_onClick" />
-</div>
+        <div>
+            <p>Lorem asd</p>
+        </div>
     </form>
 </body>
 </html>
