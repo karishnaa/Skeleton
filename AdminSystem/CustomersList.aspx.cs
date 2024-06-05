@@ -8,7 +8,8 @@ using ClassLibrary;
 
 
 public partial class _1_List : System.Web.UI.Page
-{
+{ 
+    int CustomerID;
     
     protected void Page_Load(object sender, EventArgs e)
     {
@@ -76,9 +77,15 @@ public partial class _1_List : System.Web.UI.Page
             Session["CustomerID"] = CustomerID;
             // redirect to customers confirm delete 
             Response.Redirect("CustomersConfirmDelete.aspx");
-
         }
+        else
+        {
+            //  if no item is selected , it will display an error message 
+            lblError.Text = "Select a record from the list to Delete";
+        }
+
     }
+    
 
     // Event Handler for Apply Filter Button Click 
     protected void BtnApplyFilter_Click(object sender, EventArgs e)
