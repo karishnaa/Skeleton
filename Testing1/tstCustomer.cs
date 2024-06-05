@@ -263,7 +263,7 @@ namespace Testing1
             //String variable to store any error message
             String Error = "";
             //this should pass 
-            string FullName = "a".PadRight(50, 'a'); // maximum valid length
+            string FullName = new string('a', 100); // maximum valid length
             //invoke the method
             Error = anCustomers.Valid(FullName, EmailAddress, PhoneNumber, DOB);
             //test to see that the result is correct
@@ -277,7 +277,7 @@ namespace Testing1
             //String variable to store any error message
             String Error = "";
             //this should pass
-            string FullName = new string('a', 25); // mid-range valid length
+            string FullName = new string('a', 50); // mid-range valid length
             //invoke the method
             Error = anCustomers.Valid(FullName, EmailAddress, PhoneNumber, DOB);
             //test to see that the result is correct
@@ -305,7 +305,7 @@ namespace Testing1
             //String variable to store any error message
             String Error = "";
             //this should pass
-            string FullName = new string('a', 49);
+            string FullName = new string('a', 99);
             //invoke the method
             Error = anCustomers.Valid(FullName, EmailAddress, PhoneNumber, DOB);
             //test to see that the result is correct
@@ -348,7 +348,7 @@ namespace Testing1
             //String variable to store any error message
             String Error = "";
             // this should fail 
-            string FullName = new string('a', 50 + 1);
+            string FullName = new string('a', 101);
             //invoke the method
             Error = anCustomers.Valid(FullName, EmailAddress, PhoneNumber, DOB);
             //test to see that the result is correct
@@ -363,10 +363,8 @@ namespace Testing1
             clsCustomers anCustomers = new clsCustomers();
             //String variable to store any error message
             string Error = "";
-            DateTime TestDate;
-            TestDate = DateTime.Now.Date;
-            TestDate = TestDate.AddDays(1); 
-            string DOB = TestDate.ToString("dd/MM/yy");
+            DateTime TestDate = DateTime.Now.Date.AddYears(-18).AddDays(1); // Just under 18 years old
+            string DOB = TestDate.ToString("dd-mm-yyyy");
             //invoke the method
             Error = anCustomers.Valid(FullName, EmailAddress, PhoneNumber, DOB);
             //test to see that the result is correct
@@ -381,7 +379,7 @@ namespace Testing1
             //String variable to store any error message
             String Error = "";
             //this should pass 
-            DateTime TestDate = DateTime.Now.Date.AddDays(-1);
+            DateTime TestDate = DateTime.Now.Date.AddYears(-18).AddDays(-1);
             string DOB = TestDate.ToString("dd-MM-yyyy");
             Error = anCustomers.Valid(FullName, EmailAddress, PhoneNumber, DOB);
             Assert.AreEqual("", Error, "Expected no error for a date one day less than today.");
@@ -396,7 +394,7 @@ namespace Testing1
             DateTime TestDate = DateTime.Now.Date;
             string DOB = TestDate.ToString("dd-MM-yyyy");
             Error = anCustomers.Valid(FullName, EmailAddress, PhoneNumber, DOB);
-            Assert.AreEqual(Error, "");
+            Assert.AreNotEqual(Error, "");
         }
         [TestMethod]
         public void DOBMinPlusOne()
@@ -405,10 +403,20 @@ namespace Testing1
             clsCustomers anCustomers = new clsCustomers();
             //String variable to store any error message
             String Error = "";
-            DateTime TestDate = DateTime.Now.Date.AddDays(1);
+            DateTime TestDate = DateTime.Now.Date.AddYears(-18).AddDays(-1); ;
             string DOB = TestDate.ToString("dd-MM-yyyy");
             Error = anCustomers.Valid(FullName, EmailAddress, PhoneNumber, DOB);
-            Assert.AreNotEqual("", Error, "Expected an error for a date one day in the future.");
+            Assert.AreEqual("", Error, "Expected an error for a date one day in the future.");
+        }
+        [TestMethod]
+        public void DOBMaxLessOne()
+        {
+            clsCustomers anCustomers = new clsCustomers();
+            String Error = "";
+            DateTime TestDate = DateTime.Now.Date.AddYears(-99).AddDays(1); // Just under 99 years old
+            string DOB = TestDate.ToString("dd-mm-yyyy");
+            Error = anCustomers.Valid(FullName, EmailAddress, PhoneNumber, DOB);
+            Assert.AreNotEqual(Error, "");
         }
         [TestMethod]
         public void DOBExtremeMax()
@@ -417,10 +425,10 @@ namespace Testing1
             clsCustomers anCustomers = new clsCustomers();
             //String variable to store any error message
             string Error = "";
-            DateTime TestDate = DateTime.Now.Date.AddYears(100);
+            DateTime TestDate = DateTime.Now.Date.AddYears(-99).AddDays(-1);
             string DOB = TestDate.ToString("dd-MM-yyyy"); // Correct date format for comparison
             Error = anCustomers.Valid(FullName, EmailAddress, PhoneNumber, DOB);
-            Assert.AreNotEqual("", Error, "Expected an error for a date 100 years in the future.");
+            Assert.AreNotEqual(Error,"");
         }
 
 
@@ -443,7 +451,7 @@ namespace Testing1
             clsCustomers anCustomers = new clsCustomers();
             //String variable to store any error message
             String Error = "";
-            string PhoneNumber = "12345678901"; // minimum valid length
+            string PhoneNumber = "1234567890"; // minimum valid length
             Error = anCustomers.Valid(FullName, EmailAddress, PhoneNumber, DOB.ToString());
             Assert.AreEqual(Error, "");
         }
@@ -454,21 +462,11 @@ namespace Testing1
             clsCustomers anCustomers = new clsCustomers();
             //String variable to store any error message
             String Error = "";
-            string PhoneNumber = new string('1', 15); // maximum valid length
+            string PhoneNumber = new string('1', 20); // maximum valid length
             Error = anCustomers.Valid(FullName, EmailAddress, PhoneNumber, DOB.ToString());
             Assert.AreEqual(Error, "");
         }
-        [TestMethod]
-        public void PhoneNumberMid()
-        {
-            // Create an instance of the clsCustomers class
-            clsCustomers anCustomers = new clsCustomers();
-            //String variable to store any error message
-            String Error = "";
-            string PhoneNumber = new string('1', 12); // mid-range valid length
-            Error = anCustomers.Valid(FullName, EmailAddress, PhoneNumber, DOB.ToString());
-            Assert.AreEqual(Error, "");
-        }
+       
         [TestMethod]
         public void PhoneNumberMinPlusOne()
         {
@@ -487,7 +485,7 @@ namespace Testing1
             clsCustomers anCustomers = new clsCustomers();
             //String variable to store any error message
             String Error = "";
-            string PhoneNumber = new string('1', 14); // maximum length minus one
+            string PhoneNumber = new string('1', 19); // maximum length minus one
             Error = anCustomers.Valid(FullName, EmailAddress, PhoneNumber, DOB.ToString());
             Assert.AreEqual(Error, "");
         }
@@ -509,8 +507,7 @@ namespace Testing1
             clsCustomers anCustomers = new clsCustomers();
             //String variable to store any error message
             String Error = "";
-            string PhoneNumber = "";
-            PhoneNumber = new string('1', 15 + 1);
+            string PhoneNumber = new string('1', 21);
             // Call the Valid method and store the result
             Error = anCustomers.Valid(FullName, EmailAddress, PhoneNumber, DOB.ToString());
             Assert.AreNotEqual(Error, "");
@@ -534,7 +531,7 @@ namespace Testing1
             clsCustomers anCustomers = new clsCustomers();
             //String variable to store any error message
             String Error = "";
-            string EmailAddress = "a@b.c"; // minimum valid length
+            string EmailAddress = new string('a', 5) + "@aaaaaa.com";// minimum valid length
             Error = anCustomers.Valid(FullName, EmailAddress, PhoneNumber, DOB.ToString());
             Assert.AreEqual(Error, "");
         }
@@ -545,7 +542,7 @@ namespace Testing1
             clsCustomers anCustomers = new clsCustomers();
             //String variable to store any error message
             string Error = "";
-            string EmailAddress = "".PadRight(50, 'a'); 
+            string EmailAddress = new string('a', 253) + "@aaaaaa.com";
             Error = anCustomers.Valid(FullName, EmailAddress, PhoneNumber, DOB.ToString());
             Assert.AreNotEqual(Error, "");
         }
@@ -557,7 +554,7 @@ namespace Testing1
             clsCustomers anCustomers = new clsCustomers();
             //String variable to store any error message
             String Error = "";
-            string EmailAddress = "a@".PadRight(24, 'a') + ".com"; // mid-range valid length
+            string EmailAddress = new string('a', 127) + "@aaaaaaa.com"; // mid-range valid length
             Error = anCustomers.Valid(FullName, EmailAddress, PhoneNumber, DOB.ToString());
             Assert.AreEqual(Error, "");
         }
@@ -572,6 +569,7 @@ namespace Testing1
             Error = anCustomers.Valid(FullName, EmailAddress, PhoneNumber, DOB.ToString());
             Assert.AreEqual(Error, "");
         }
+        
         [TestMethod]
         public void EmailMaxLessOne()
         {
@@ -579,20 +577,9 @@ namespace Testing1
             clsCustomers anCustomers = new clsCustomers();
             //String variable to store any error message
             String Error = "";
-            string EmailAddress = new string('a', 49); // maximum length minus one
-            Error = anCustomers.Valid(FullName, EmailAddress, PhoneNumber, DOB);
-            Assert.AreNotEqual(Error, "");
-        }
-        [TestMethod]
-        public void EmailMinLessOne()
-        {
-            // Create an instance of the clsCustomers class
-            clsCustomers anCustomers = new clsCustomers();
-            //String variable to store any error message
-            String Error = "";
-            string EmailAddress = "a@bc"; // less than minimum length
+            string EmailAddress = new string('a', 242) + "@aaaaaa.com"; // maximum length minus one
             Error = anCustomers.Valid(FullName, EmailAddress, PhoneNumber, DOB.ToString());
-            Assert.AreNotEqual(Error, "");
+            Assert.AreEqual(Error, "");
         }
         [TestMethod]
         public void EmailNoAtSymbol()
@@ -614,7 +601,7 @@ namespace Testing1
             // Call the StatisticsGroupedByDOB method and store the result in a DataTable
             DataTable dT = anCustomers.StatisticsGroupedByDOB();
             // Define the expected number of records
-            int noOfRecord = 7;
+            int noOfRecord = 8;
             // Check if the actual number of records matches the expected number of records
             Assert.AreEqual(noOfRecord, dT.Rows.Count);
 

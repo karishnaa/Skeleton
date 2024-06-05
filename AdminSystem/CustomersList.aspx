@@ -61,7 +61,7 @@
                 <asp:Button ID="btnClearfilter" runat="server" OnClick="BtnClearfilter_Click" Text="Clear Filter" Font-Names="Century Gothic" />
             </div>
             <asp:ListBox ID="lstCustomersList" runat="server" Height="200px" Width="100%" Font-Names="Century Gothic" />
-            <asp:Label ID="lblError" runat="server" Text="lblError" Font-Names="Century Gothic" ForeColor="Red" />
+            <asp:Label ID="lblError" runat="server" Text="" Font-Names="Century Gothic" ForeColor="Red" />
             <div class="button-container">
                 <asp:Button ID="btnAdd" runat="server" OnClick="BtnAdd_Click" Text="Add" Width="100px" Font-Names="Centry Gothic" />
                 <asp:Button ID="btnEdit" runat="server" OnClick="BtnEdit_Click" Text="Edit" Width="100px" Font-Names="Century Gothic" />

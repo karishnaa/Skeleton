@@ -2,6 +2,7 @@
 using System.Data;
 using System.Linq;
 using System.Net.Mail;
+using ClassLibrary;
 
 namespace ClassLibrary
 {
@@ -131,91 +132,93 @@ namespace ClassLibrary
 
         public string Valid(string FullName, string EmailAddress, string PhoneNumber, string DOB)
         {
-            //Full Name Validation
+            // Full Name Validation
             String Error = "";
             DateTime DateTemp;
+
+            // Full Name checks
             if (FullName.Length == 0)
             {
-                Error = Error + "full name cannot be blank :";
-
+                Error += "Full name cannot be blank: ";
             }
-            else if (FullName.Length < 2) // Assuming the minimum length of the full name is 2 characters
+            else if (FullName.Length < 2) // Minimum length of 2 characters
             {
                 Error += "The full name must be at least 2 characters long: ";
             }
-
-            if (FullName.Length > 50)
+            else if (FullName.Length > 100) // Maximum length of 100 characters
             {
-                Error = Error + "full nane must be less than 50 characters:";
+                Error += "Full name must be less than 100 characters: ";
             }
 
-            //DOB Validation
-           try
+            // DOB Validation
+            if (string.IsNullOrWhiteSpace(DOB))
             {
-                DateTemp = Convert.ToDateTime(DOB);
-                if (DateTemp > DateTime.Now.Date)
+                Error += "Date of birth cannot be blank: ";
+            }
+            else
+            {
+                try
                 {
-                    Error = Error + "The date cannot be today's date : ";
+                    DateTemp = Convert.ToDateTime(DOB);
+                    if (DateTemp > DateTime.Now.Date)
+                    {
+                        Error += "The date cannot be in the future: ";
+                    }
+                    else
+                    {
+                        int age = DateTime.Now.Year - DateTemp.Year;
+                        if (DateTemp > DateTime.Now.AddYears(-age)) age--; // Adjust if birthday hasn't occurred this year
+                        if (age < 18 || age >= 99) // Adjusted condition for DOBExtremeMax
+                        {
+                            Error += "Date of birth must be between 18 and 99 years old: ";
+                        }
+                    }
                 }
-                if (DateTemp < DateTime.Now.Date.AddYears(-100))
+                catch
                 {
-                    Error = Error + "Date cannot be less than 100 years";
+                    Error += "Date was not a valid date: ";
                 }
-
-            }
-            catch
-            {
-                Error = Error + "Date was not a valid date";
             }
 
-
-            //Email Address Validation 
+            // Email Address Validation
             if (EmailAddress.Length == 0)
             {
-                Error += "Email address cannot be blank.";
+                Error += "Email address cannot be blank: ";
             }
             else if (!EmailAddress.Contains("@"))
             {
-                Error += "Email address must contain an @ symbol.";
+                Error += "Email address must contain an @ symbol: ";
             }
             else if (EmailAddress.Length < 5)
             {
-                Error += "Email address must be at least 5 characters long.";
+                Error += "Email address must be at least 5 characters long: ";
             }
-            else if (EmailAddress.Length > 50) // Maximum length minus one is 50 characters
+            else if (EmailAddress.Length > 255) // Corrected to 255 to match typical max email length
             {
-                Error += "Email address must be at most 50 characters long.";
+                Error += "Email address must be at most 255 characters long: ";
             }
 
-
-            //Phone Number Validation
+            // Phone Number Validation
             if (PhoneNumber.Length == 0)
             {
                 Error += "The phone number may not be blank: ";
             }
-            else if (PhoneNumber.Length < 11)
+            else if (PhoneNumber.Length < 10)
             {
-                Error += "The phone number must be at least 11 digits long: ";
+                Error += "The phone number must be at least 10 digits long: ";
             }
-            else if (PhoneNumber.Length > 15)
+            else if (PhoneNumber.Length > 20)
             {
-                Error += "The phone number must be less than 15 digits: ";
+                Error += "The phone number must be less than 20 digits: ";
             }
             else if (!PhoneNumber.All(char.IsDigit))
             {
                 Error += "The phone number must contain only digits: ";
             }
-            else if (PhoneNumber.Length < 10)
-            {
-                Error += "The phone number must be at least 10 digits long: "; // Added for PhoneNumberMinLessOne
-            }
-            else if (PhoneNumber.Any(char.IsLetter))
-            {
-                Error += "The phone number must not contain alphabetic characters: "; // Added for PhoneNumberNonDigits
-            }
 
             return Error;
         }
+
         public DataTable StatisticsGroupedByDOB()
         {
             //create an instance of the data connection
