@@ -169,7 +169,7 @@ namespace ClassLibrary
                         int age = DateTime.Now.Year - DateTemp.Year;
                         if (DateTemp > DateTime.Now.AddYears(-age)) age--; 
                         if (age < 18 || age >= 99) 
-                        {
+                       {
                             Error += "Date of birth must be between 18 and 99 years old: ";
                         }
                     }
@@ -193,7 +193,9 @@ namespace ClassLibrary
             {
                 Error += "Email address must be at least 5 characters long: ";
             }
+
             else if (EmailAddress.Length > 255) 
+
             {
                 Error += "Email address must be at most 255 characters long: ";
             }

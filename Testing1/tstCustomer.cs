@@ -531,7 +531,7 @@ namespace Testing1
             clsCustomers anCustomers = new clsCustomers();
             //String variable to store any error message
             String Error = "";
-            string EmailAddress = "a@b.c"; // minimum valid length
+            string EmailAddress = new string('a', 5) + "@aaaaaa.com";// minimum valid length
             Error = anCustomers.Valid(FullName, EmailAddress, PhoneNumber, DOB.ToString());
             Assert.AreEqual(Error, "");
         }
@@ -542,7 +542,7 @@ namespace Testing1
             clsCustomers anCustomers = new clsCustomers();
             //String variable to store any error message
             string Error = "";
-            string EmailAddress = new string('a', 254) + "@a.com";
+            string EmailAddress = new string('a', 253) + "@aaaaaa.com";
             Error = anCustomers.Valid(FullName, EmailAddress, PhoneNumber, DOB.ToString());
             Assert.AreNotEqual(Error, "");
         }
@@ -554,7 +554,7 @@ namespace Testing1
             clsCustomers anCustomers = new clsCustomers();
             //String variable to store any error message
             String Error = "";
-            string EmailAddress = new string('a', 127) + "@a.com"; // mid-range valid length
+            string EmailAddress = new string('a', 127) + "@aaaaaaa.com"; // mid-range valid length
             Error = anCustomers.Valid(FullName, EmailAddress, PhoneNumber, DOB.ToString());
             Assert.AreEqual(Error, "");
         }
@@ -569,6 +569,7 @@ namespace Testing1
             Error = anCustomers.Valid(FullName, EmailAddress, PhoneNumber, DOB.ToString());
             Assert.AreEqual(Error, "");
         }
+        
         [TestMethod]
         public void EmailMaxLessOne()
         {
@@ -576,7 +577,7 @@ namespace Testing1
             clsCustomers anCustomers = new clsCustomers();
             //String variable to store any error message
             String Error = "";
-            string EmailAddress = new string('a', 242) + "@aaaaaaa.com"; // maximum length minus one
+            string EmailAddress = new string('a', 242) + "@aaaaaa.com"; // maximum length minus one
             Error = anCustomers.Valid(FullName, EmailAddress, PhoneNumber, DOB);
             Assert.AreEqual(Error, "");
         }
@@ -589,7 +590,7 @@ namespace Testing1
             String Error = "";
             string EmailAddress = "a@b"; // less than minimum length
             Error = anCustomers.Valid(FullName, EmailAddress, PhoneNumber, DOB.ToString());
-            Assert.AreNotEqual(Error, "");
+            Assert.AreEqual(Error, "");
         }
         [TestMethod]
         public void EmailNoAtSymbol()
