@@ -1,31 +1,124 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="CustomersDataEntry.aspx.cs" Inherits="_1_DataEntry" %>
 
 <!DOCTYPE html>
-
 <html xmlns="http://www.w3.org/1999/xhtml">
-    <head runat="server">
-    <title></title>Customer Page 
-    </head>
-<body style="height: 671px; width: 1189px; margin-left: 16px; margin-top: 16px;">
-   <form id="form1" runat="server">
-    <asp:TextBox ID="txtCustomerID" runat="server" height="31px" style="z-index: 1; left: 800px; top: 104px; position: absolute; width: 150px;" OnTextChanged="txtCustomerID_TextChanged"></asp:TextBox>
-    <asp:Label ID="lblCustomerID" runat="server" style="z-index: 1; left: 588px; top: 111px; position: absolute; right: 829px;" Text="CustomerID" Font-Names="Century Gothic"></asp:Label>
-    <asp:TextBox ID="txtFullName" runat="server" height="31px" style="z-index: 1; left: 798px; top: 159px; position: absolute; width: 150px; right: 554px;" OnTextChanged="txtFullName_TextChanged"></asp:TextBox>
-    <asp:TextBox ID="txtPhoneNumber" runat="server" height="31px" style="z-index: 1; left: 798px; top: 272px; position: absolute; width: 150px;"></asp:TextBox>
-    <asp:Label ID="lblEmailAddress" runat="server" style="z-index: 1; left: 587px; top: 224px; position: absolute" Text="Email Address" Font-Names="Century Gothic" height="21px" width="107px"></asp:Label>
-    <asp:TextBox ID="TxtEmailAddress" runat="server" height="31px" style="z-index: 1; left: 799px; top: 217px; position: absolute; width: 150px;"></asp:TextBox>
-    <asp:Label ID="lblDOB" runat="server" style="z-index: 1; left: 590px; top: 324px; position: absolute" Text="DOB" Font-Names="Century Gothic"></asp:Label>
-    <asp:TextBox ID="txtDOB" runat="server" height="31px" style="z-index: 1; left: 799px; top: 323px; position: absolute; width: 150px;"></asp:TextBox>
-    <asp:Label ID="lblFullName" runat="server" style="z-index: 1; left: 589px; top: 165px; position: absolute" Text="Full Name" Font-Names="Century Gothic"></asp:Label>
-    <asp:Label ID="lblPhoneNumber" runat="server" style="z-index: 1; left: 587px; top: 278px; position: absolute; margin-bottom: 0px;" Text="Phone Number" Font-Names="Century Gothic"></asp:Label>
-    <asp:CheckBox ID="Subscribed" runat="server" OnCheckedChanged="CheckBox1_CheckedChanged"  Text="Subscribed" style="z-index: 1; left: 793px; top: 377px; position: absolute; width: 150px;" Font-Names="Century Gothic"></asp:CheckBox>
-    <asp:Button ID="BtnCancel" runat="server" BorderStyle="Solid" Text="Cancel" style="z-index: 1; left: 860px; top: 456px; position: absolute; width: 67px; right: 616px;" Font-Names="Century Gothic" />
-    <asp:Label ID="lblError" runat="server" Text="lblError" style="z-index: 1; left: 587px; top: 416px; position: absolute;" Font-Names="Century Gothic"></asp:Label>
-    <asp:Button ID="BtnOK" runat="server" BorderStyle="Solid" Text="OK" style="z-index: 1; left: 787px; top: 456px; position: absolute; right: 182px; height: 27px;" Font-Names="Century Gothic" OnClick="BtnOK_Click" />
-    <asp:Button ID="BtnFind" runat="server" BorderStyle="Solid" Text="Find" style="z-index: 1; left:952px; top: 456px; position: absolute;" Font-Names="Century Gothic" OnClick="BtnFind_Click" />
-</form>
+<head runat="server">
+    <title>Customers Data Entry - Fashion Frenzy</title>
+    <style type="text/css">
+        body {
+            width: 100vw;
+            height: 100vh;
+            background-image: url('../images/greeeen.jpg');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            margin: 0;
+            padding: 0;
+            overflow-x: hidden;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+        }
 
+        #form1 {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 80vh;
+            min-width: 80vh;
+            background-color: #fffcf9;
+        }
+
+        .container {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            text-align: left;
+            width: 300px;
+        }
+
+        .container {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+        .container > * {
+            margin: 10px 0;
+        }
+
+        .button-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .button-container > * {
+            margin: 5px;
+        }
+
+        button {
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            border: 0;
+            background-color: white;
+            box-shadow: rgb(0 0 0 / 5%) 0 0 8px;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            font-size: 15px;
+            transition: all 0.5s ease;
+        }
+
+        button:hover {
+            background-color: #f0f0f0;
+        }
+    </style>
+</head>
+<body>
+    <form id="form1" runat="server" class="container">
+        <div class="form-group">
+            <asp:Label ID="lblCustomerID" runat="server" Text="Customer ID" Font-Names="Century Gothic"></asp:Label>
+            <asp:TextBox ID="txtCustomerID" runat="server" Height="31px" Width="200px"></asp:TextBox>
+        </div>
+
+        <div class="form-group">
+            <asp:Label ID="lblFullName" runat="server" Text="Full Name" Font-Names="Century Gothic"></asp:Label>
+            <asp:TextBox ID="txtFullName" runat="server" Height="31px" Width="200px"></asp:TextBox>
+        </div>
+
+        <div class="form-group">
+            <asp:Label ID="lblEmailAddress" runat="server" Text="Email Address" Font-Names="Century Gothic"></asp:Label>
+            <asp:TextBox ID="TxtEmailAddress" runat="server" Height="31px" Width="200px"></asp:TextBox>
+        </div>
+
+        <div class="form-group">
+            <asp:Label ID="lblPhoneNumber" runat="server" Text="Phone Number" Font-Names="Century Gothic"></asp:Label>
+            <asp:TextBox ID="txtPhoneNumber" runat="server" Height="31px" Width="200px"></asp:TextBox>
+        </div>
+
+        <div class="form-group">
+            <asp:Label ID="lblDOB" runat="server" Text="DOB" Font-Names="Century Gothic"></asp:Label>
+            <asp:TextBox ID="txtDOB" runat="server" Height="31px" Width="200px"></asp:TextBox>
+        </div>
+
+        <div class="form-group">
+            <asp:CheckBox ID="ChkSubscribed" runat="server" Text="Subscribed" Font-Names="Century Gothic"></asp:CheckBox>
+        </div>
+
+        <asp:Label ID="lblError" runat="server" Text="" Font-Names="Century Gothic"></asp:Label>
+
+        <div class="button-container">
+            <asp:Button ID="BtnOK" runat="server" Text="OK" CssClass="styled-button" Font-Names="Century Gothic" OnClick="BtnOK_Click" />
+            <asp:Button ID="BtnCancel" runat="server" Text="Cancel" CssClass="styled-button" Font-Names="Century Gothic" OnClick="BtnCancel_Click" />
+            <asp:Button ID="BtnFind" runat="server" Text="Find" CssClass="styled-button" Font-Names="Century Gothic" OnClick="BtnFind_Click" />
+            <asp:Button ID="btnReturntomm" runat="server" Text="Return to Main Menu" Width="181px" CssClass="styled-button" Font-Names="Century Gothic" OnClick="btnReturntomm_Click" />
+        </div>
+    </form>
 </body>
-
-
 </html>
+

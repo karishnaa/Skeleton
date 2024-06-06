@@ -33,4 +33,10 @@ public partial class _StockStatistics : System.Web.UI.Page
         GridViewStGroupByQuantity.HeaderRow.Cells[0].Text = " Total ";
     }
 
+
+    protected void btnBack_Click(object sender, EventArgs e)
+    {
+        //redirect to the stock list
+        Response.Redirect("StockList.aspx");
+    }
 }

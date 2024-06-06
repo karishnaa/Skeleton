@@ -1,54 +1,37 @@
 ﻿using ClassLibrary;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
+using System.Data;
+using System.Linq;
+using System.Net.Mail;
 
 namespace Testing1
 {
     [TestClass]
     public class tstCustomer
     {
+        //Create customer test data
+        string FullName = "Karishna";
+        string EmailAddress = "Karishna@gmail.com";
+        string PhoneNumber = "07485748951";
+        string DOB = "03/06/2003";
+
         [TestMethod]
         public void InstanceOK()
         {
-            //
+            //Create an instance of the class we want to create
             clsCustomers anCustomers = new clsCustomers();
-            // test to see that it exists 
+            //Test to see if it exists
             Assert.IsNotNull(anCustomers);
-        }
-        [TestMethod]
-
-        public void ActivePropertyOK()
-        {
-            // create an instance of the class we want to create 
-            clsCustomers anCustomers = new clsCustomers();
-            // create some test data to assign to the property 
-            Boolean TestData = true;
-            // assign the data to the property 
-            anCustomers.Active = TestData;
-            // test to see that the two values are the same 
-            Assert.AreEqual(anCustomers.Active, TestData);
-
-        }
-        [TestMethod]
-        public void DateAddedPropertyOK()
-        {
-            // create an instance of the class we want to create 
-            clsCustomers anCustomers = new clsCustomers();
-            //create some test data to assign to the property 
-            DateTime TestData = DateTime.Now.Date;
-            //assign the data to the property
-            anCustomers.DateAdded = TestData;
-            //test to see that the two values are the same
-            Assert.AreEqual(anCustomers.DateAdded, TestData);
         }
 
         [TestMethod]
         public void CustomerIDPropertyOK()
         {
-            // create an instance of the class we want to create
+            //create an instance of the class we want to create
             clsCustomers anCustomers = new clsCustomers();
-            //create some test data to assign to the property
-            int testData = 2;
+            // Test data to assign to the CustomerID property
+            int testData = 1;
             //assign the data to the property
             anCustomers.CustomerID = testData;
             //test to see that the two values are the same
@@ -57,231 +40,608 @@ namespace Testing1
         [TestMethod]
         public void FullNamePropertyOK()
         {
-            // create an instance of the class we want to create
+            // Create an instance of the clsCustomers class
             clsCustomers anCustomers = new clsCustomers();
-            //create some test data to assign to the property
-            string testData = "Karishna";
-            //assign the data to the property
-            anCustomers.FullName = testData;
-            //test to see that the two values are the same
-            Assert.AreEqual(testData, anCustomers.FullName);
+            // Test data to assign to the FullName property
+            string testFullName = "Karishna";
+            // Assign the test data to the FullName property
+            anCustomers.FullName = testFullName;
+            // test to see that the two values are the same
+            Assert.AreEqual(testFullName, anCustomers.FullName);
         }
         [TestMethod]
         public void EmailAddressPropertyOK()
         {
-            // create an instance of the class we want to create
+            // Create an instance of the clsCustomers class
             clsCustomers anCustomers = new clsCustomers();
-            //create some test data to assign to the property
-            string testData = "karishna@outlook.com";
-            //assign the data to the property
-            anCustomers.EmailAddress = testData;
-            //test to see that the two values are the same
-            Assert.AreEqual(testData, anCustomers.EmailAddress);
+            // Test data to assign to the EmailAddress property
+            string testEmailAddress = "karishna@outlook.com";
+            // Assign the test data to the EmailAddress property
+            anCustomers.EmailAddress = testEmailAddress;
+            // test to see that the two values are the same
+            Assert.AreEqual(testEmailAddress, anCustomers.EmailAddress);
         }
         [TestMethod]
         public void PhoneNumberPropertyOK()
         {
-            // create an instance of the class we want to create
+            // Create an instance of the clsCustomers class
             clsCustomers anCustomers = new clsCustomers();
-            //create some test data to assign to the property
-            string testData = "07859875984";
-            //assign the data to the property
-            anCustomers.PhoneNumber = testData;
-            //test to see that the two values are the same
-            Assert.AreEqual(testData, anCustomers.PhoneNumber);
+            // Test data to assign to the PhoneNumber property
+            string testPhoneNumber = "07859875984";
+            // Assign the test data to the PhoneNumber property
+            anCustomers.PhoneNumber = testPhoneNumber;
+            // test to see that the two values are the same
+            Assert.AreEqual(testPhoneNumber, anCustomers.PhoneNumber);
         }
         [TestMethod]
         public void DOBPropertyOK()
         {
-            // create an instance of the class we want to create
+            // Create an instance of the clsCustomers class
             clsCustomers anCustomers = new clsCustomers();
-            //create some test data to assign to the property
-            DateTime testData = new DateTime(2003, 3, 24);
-            //assign the data to the property
-            anCustomers.DOB = testData;
-            //test to see that the two values are the same
-            Assert.AreEqual(testData, anCustomers.DOB);
+            // Test data to assign to the DOB property
+            DateTime testDOB = new DateTime(2003, 3, 24);
+            // Assign the test data to the DOB property
+            anCustomers.DOB = testDOB;
+            // test to see that the two values are the same
+            Assert.AreEqual(testDOB, anCustomers.DOB);
         }
         [TestMethod]
         public void SubscribedPropertyOK()
         {
-            // create an instance of the class we want to create
+            // Create an instance of the clsCustomers class
             clsCustomers anCustomers = new clsCustomers();
-            //create some test data to assign to the property
-            bool testData = true;
-            //assign the data to the property
-            anCustomers.Subscribed = testData;
-            //test to see that the two values are the same
-            Assert.AreEqual(testData, anCustomers.Subscribed);
+            // Test data to assign to the Subscribed property
+            bool testSubscribed  = true;
+            // Assign the test data to the Subscribed property
+            anCustomers.Subscribed = testSubscribed;
+            // test to see that the two values are the same
+            Assert.AreEqual(testSubscribed, anCustomers.Subscribed);
         }
         [TestMethod]
         public void FindMethodOK()
         {
-            //CRATE AN INSTANCE OF CLASS WE WANT TO CREATE 
-            clsCustomers ancustomers = new clsCustomers();
-            //CREATE A BOOLEAN VARIABLE TO STORE THE RESULTS OF THE VALIDATION 
-            bool Found = false;
-            //CREATE SOME TEST DATA TO USE WITH THE METHOD 
-            Int32 CustomersID = 1;
-            //INVOKE THE METHOD
-            Found = ancustomers.Find(CustomersID);
-            //TEST TO SEE IF THE RESULT IS TRUE 
+            //create an instance of the new class we want to create
+            clsCustomers anCustomers = new clsCustomers();
+            //create a Boolean variable to store the results of the validation
+            Boolean Found = false;
+            //create some test data to use with the method
+            Int32 CustomerID = 6;
+            //invoke the method
+            Found = anCustomers.Find(CustomerID);
+            //test to see if the result is true
             Assert.IsTrue(Found);
         }
         [TestMethod]
         public void TestCustomerIDFound()
         {
-            // Create an instance of the class we want to test
+            // Create an instance of the clsCustomers class
             clsCustomers anCustomers = new clsCustomers();
-
-            // Create a boolean variable to store the result of the validation
-            bool Found = false;
-
-            bool OK = true;
-
-            //CREATE SOME TEST DATA TO USE WITH THE METHOD
-            int CustomerID = 2;
-
-            // Invoke the method
+            // Boolean variable to store the result of the find operation
+            Boolean Found = false;
+            // Boolean variable to store the outcome of the test
+            Boolean OK = true;
+            // Test data for the CustomerID
+            Int32 CustomerID = 1;
+            // Execute the find method
             Found = anCustomers.Find(CustomerID);
-
-            if (anCustomers.CustomerID != 2)
+            // Check if the CustomerID found matches the test data
+            if (anCustomers.CustomerID != 1)
             {
                 OK = false;
             }
-
-            // Test to see if the result is true
+            //test to see that the result is correct
             Assert.IsTrue(OK);
         }
         [TestMethod]
         public void TestFullNameFound()
         {
-            // Create an instance of the class we want to test
+            // Create an instance of the clsCustomers class
             clsCustomers anCustomers = new clsCustomers();
-
-            // Create a boolean variable to store the result of the validation
-            bool Found = false;
-
-            bool OK = true;
-
-            //CREATE SOME TEST DATA TO USE WITH THE METHOD
-            int CustomerID = 2;
-
-            // Invoke the method
+            // Boolean variable to store the result of the find operation
+            Boolean Found = false;
+            // Boolean variable to store the outcome of the test
+            Boolean OK = true;
+            // Test data for the CustomerID
+            Int32 CustomerID = 1;
+            // Execute the find method
             Found = anCustomers.Find(CustomerID);
-
-            if (anCustomers.FullName != "Karishna Patel")
+            // Check if the FullName found matches the test data
+            if (anCustomers.FullName != "Karishna")
             {
                 OK = false;
             }
+            //test to see that the result is correct
             Assert.IsTrue(OK);
         }
         [TestMethod]
         public void TestEmailAddressFound()
         {
-            // Create an instance of the class we want to test
+            // Create an instance of the clsCustomers class
             clsCustomers anCustomers = new clsCustomers();
-
-            // Create a boolean variable to store the result of the validation
-            bool Found = false;
-
-
-            bool OK = true;
-
-            //CREATE SOME TEST DATA TO USE WITH THE METHOD
-            int CustomerID = 2;
-
-            // Invoke the method
+            // Boolean variable to store the result of the find operation
+            Boolean Found = false;
+            // Boolean variable to store the outcome of the test
+            Boolean OK = true;
+            // Test data for the CustomerID
+            Int32 CustomerID = 1;
+            // Execute the find method
             Found = anCustomers.Find(CustomerID);
-
-            if (anCustomers.EmailAddress != "karishna@gmail.com")
+            // Check if the EmailAddress found matches the test data
+            if (anCustomers.EmailAddress != "KARISHNA@GMAIL,COM")
             {
                 OK = false;
             }
+            //Test to see that the result is correct
             Assert.IsTrue(OK);
         }
-
 
         [TestMethod]
         public void TestPhoneNumberFound()
         {
-            // Create an instance of the class we want to test
+            // Create an instance of the clsCustomers class
             clsCustomers anCustomers = new clsCustomers();
-
-            // Create a boolean variable to store the result of the validation
-            bool Found = false;
-
-            bool OK = true;
-
-            //CREATE SOME TEST DATA TO USE WITH THE METHOD
-            int CustomerID = 2;
-
-            // Invoke the method
+            // Boolean variable to store the result of the find operation
+            Boolean Found = false;
+            // Boolean variable to store the outcome of the test
+            Boolean OK = true;
+            // Test data for the CustomerID
+            Int32 CustomerID = 1;
+            // Execute the find method
             Found = anCustomers.Find(CustomerID);
-
-            if (anCustomers.PhoneNumber != "07895689574")
+            // Check if the PhoneNumber found matches the test data
+            if (anCustomers.PhoneNumber != "07142578965")
             {
                 OK = false;
             }
+            //Test to see that the result is correct
             Assert.IsTrue(OK);
         }
+
         [TestMethod]
         public void TestDOBFound()
         {
-            // Create an instance of the class we want to test
+            // Create an instance of the clsCustomers class
             clsCustomers anCustomers = new clsCustomers();
-
-            // Create a boolean variable to store the result of the validation
-            bool Found = false;
-
-            // Create a boolean variable to track if the test is OK
-            bool OK = true;
-            //CREATE SOME TEST DATA TO USE WITH THE METHOD
-
-            // Hardcoded date of birth for testing
-            DateTime testDOB = new DateTime(2003, 3, 3);
-
-            // Invoke the method with the test date of birth
-            Found = anCustomers.Find(testDOB);
-
-            // Check if the DOB property of the instance matches the test date of birth
-            if (anCustomers.DOB != testDOB)
+            // Boolean variable to store the result of the find operation
+            Boolean Found = false;
+            // Boolean variable to store the outcome of the test
+            Boolean OK = true;
+            // Test data for the CustomerID
+            Int32 CustomerID = 1;
+            // Execute the find method
+            Found = anCustomers.Find(CustomerID);
+            // Check if the DOB found matches the test data
+            if (anCustomers.DOB != Convert.ToDateTime("04-04-2003"))
             {
-                // If DOB doesn't match the test value, set OK to false
+       
                 OK = false;
             }
-
-            // Test to see if the result is true
+            //Test to see that the result is correct
             Assert.IsTrue(OK);
         }
 
         [TestMethod]
         public void TestSubscribedFound()
         {
-            // Create an instance of the class we want to test
+            // Create an instance of the clsCustomers class
             clsCustomers anCustomers = new clsCustomers();
-
-            // Create a boolean variable to store the result of the validation
-            bool Found = false;
-
-            // Create some test data for subscribed status
-            bool OK = true;
-
-            //CREATE SOME TEST DATA TO USE WITH THE METHOD
-            int CustomerID = 2;
-
-            // Invoke the method
+            // Boolean variable to store the result of the find operation
+            Boolean Found = false;
+            // Boolean variable to store the outcome of the test
+            Boolean OK = true;
+            // Test data for the CustomerID
+            Int32 CustomerID = 1;
+            // Execute the find method
             Found = anCustomers.Find(CustomerID);
+            // Check if the Subscribed status found matches the test data
             if (anCustomers.Subscribed != true)
             {
                 OK = false;
             }
-            // Test to see if the result is true
+            //Test to see that the result is correct
             Assert.IsTrue(OK);
         }
+        [TestMethod]
+        public void ValidMethodOK()
+        {
+            //create an instance of the class we want to create
+            clsCustomers anCustomers = new clsCustomers();
+            //string variable to store any error message
+            String Error = "";
+            //invoke the method
+            Error = anCustomers.Valid(FullName, EmailAddress, PhoneNumber, DOB);
+            //test to see if the result is correct
+            Assert.AreEqual(Error, "");
+
+        }
+       
+        [TestMethod]
+        public void FullNameMax()
+        {
+            // Create an instance of the clsCustomers class
+            clsCustomers anCustomers = new clsCustomers();
+            //String variable to store any error message
+            String Error = "";
+            //this should pass 
+            string FullName = "a".PadRight(50, 'a'); // maximum valid length
+            //invoke the method
+            Error = anCustomers.Valid(FullName, EmailAddress, PhoneNumber, DOB);
+            //test to see that the result is correct
+            Assert.AreEqual(Error, "");
+        }
+        [TestMethod]
+        public void FullNameMid()
+        {
+            // Create an instance of the clsCustomers class
+            clsCustomers anCustomers = new clsCustomers();
+            //String variable to store any error message
+            String Error = "";
+            //this should pass
+            string FullName = new string('a', 25); // mid-range valid length
+            //invoke the method
+            Error = anCustomers.Valid(FullName, EmailAddress, PhoneNumber, DOB);
+            //test to see that the result is correct
+            Assert.AreEqual(Error, "");
+        }
+        [TestMethod]
+        public void FullNameMinPlusOne()
+        {
+            // Create an instance of the clsCustomers class
+            clsCustomers anCustomers = new clsCustomers();
+            //String variable to store any error message
+            String Error = "";
+            //this should pass
+            string FullName = "aa";
+            //invoke the method
+            Error = anCustomers.Valid(FullName, EmailAddress, PhoneNumber, DOB);
+            //test to see that the result is correct
+            Assert.AreEqual(Error, "");
+        }
+        [TestMethod]
+        public void FullNameMaxLessOne()
+        {
+            // Create an instance of the clsCustomers class
+            clsCustomers anCustomers = new clsCustomers();
+            //String variable to store any error message
+            String Error = "";
+            //this should pass
+            string FullName = new string('a', 49);
+            //invoke the method
+            Error = anCustomers.Valid(FullName, EmailAddress, PhoneNumber, DOB);
+            //test to see that the result is correct
+            Assert.AreEqual(Error, "");
+        }
+        [TestMethod]
+        public void FullNameMinLessOne()
+        {
+            // Create an instance of the clsCustomers class
+            clsCustomers anCustomers = new clsCustomers();
+            //String variable to store any error message
+            String Error = "";
+            // this should fail
+            string FullName = "";
+            //invoke the method
+            Error = anCustomers.Valid(FullName, EmailAddress, PhoneNumber, DOB);
+            //test to see that the result is correct
+            Assert.AreNotEqual(Error, "");
+        }
+        [TestMethod]
+        public void FullNameMin()
+        {
+            // Create an instance of the clsCustomers class
+            clsCustomers anCustomers = new clsCustomers();
+            //String variable to store any error message
+            String Error = "";
+            // this should fail
+            string FullName = "a";
+            //invoke the method
+            Error = anCustomers.Valid(FullName, EmailAddress, PhoneNumber, DOB);
+            //test to see that the result is correct
+            Assert.AreNotEqual(Error, "");
+        }
+
+        [TestMethod]
+        public void FullNameMaxPlusOne()
+        {
+            // Create an instance of the clsCustomers class
+            clsCustomers anCustomers = new clsCustomers();
+            //String variable to store any error message
+            String Error = "";
+            // this should fail 
+            string FullName = new string('a', 50 + 1);
+            //invoke the method
+            Error = anCustomers.Valid(FullName, EmailAddress, PhoneNumber, DOB);
+            //test to see that the result is correct
+            Assert.AreNotEqual(Error, "");
+        }
+
+        // Validation For DOB 
+        [TestMethod]
+        public void DOBExtremeMin()
+        {
+            // Create an instance of the clsCustomers class
+            clsCustomers anCustomers = new clsCustomers();
+            //String variable to store any error message
+            string Error = "";
+            DateTime TestDate;
+            TestDate = DateTime.Now.Date;
+            TestDate = TestDate.AddDays(1); 
+            string DOB = TestDate.ToString("dd/MM/yy");
+            //invoke the method
+            Error = anCustomers.Valid(FullName, EmailAddress, PhoneNumber, DOB);
+            //test to see that the result is correct
+            Assert.AreNotEqual(Error, "");
+        }
+
+        [TestMethod]
+        public void DOBMinLessOne()
+        {
+            // Create an instance of the clsCustomers class
+            clsCustomers anCustomers = new clsCustomers();
+            //String variable to store any error message
+            String Error = "";
+            //this should pass 
+            DateTime TestDate = DateTime.Now.Date.AddDays(-1);
+            string DOB = TestDate.ToString("dd-MM-yyyy");
+            Error = anCustomers.Valid(FullName, EmailAddress, PhoneNumber, DOB);
+            Assert.AreEqual("", Error, "Expected no error for a date one day less than today.");
+        }
+        [TestMethod]
+        public void DOBMin()
+        {
+            // Create an instance of the clsCustomers class
+            clsCustomers anCustomers = new clsCustomers();
+            //String variable to store any error message
+            String Error = "";
+            DateTime TestDate = DateTime.Now.Date;
+            string DOB = TestDate.ToString("dd-MM-yyyy");
+            Error = anCustomers.Valid(FullName, EmailAddress, PhoneNumber, DOB);
+            Assert.AreEqual(Error, "");
+        }
+        [TestMethod]
+        public void DOBMinPlusOne()
+        {
+            // Create an instance of the clsCustomers class
+            clsCustomers anCustomers = new clsCustomers();
+            //String variable to store any error message
+            String Error = "";
+            DateTime TestDate = DateTime.Now.Date.AddDays(1);
+            string DOB = TestDate.ToString("dd-MM-yyyy");
+            Error = anCustomers.Valid(FullName, EmailAddress, PhoneNumber, DOB);
+            Assert.AreNotEqual("", Error, "Expected an error for a date one day in the future.");
+        }
+        [TestMethod]
+        public void DOBExtremeMax()
+        {
+            // Create an instance of the clsCustomers class
+            clsCustomers anCustomers = new clsCustomers();
+            //String variable to store any error message
+            string Error = "";
+            DateTime TestDate = DateTime.Now.Date.AddYears(100);
+            string DOB = TestDate.ToString("dd-MM-yyyy"); // Correct date format for comparison
+            Error = anCustomers.Valid(FullName, EmailAddress, PhoneNumber, DOB);
+            Assert.AreNotEqual("", Error, "Expected an error for a date 100 years in the future.");
+        }
+
+
+        [TestMethod]
+        public void DOBInvalidData()
+        {
+            // Create an instance of the clsCustomers class
+            clsCustomers anCustomers = new clsCustomers();
+            //String variable to store any error message
+            String Error = "";
+            string DOB = "this is not a date!";
+            Error = anCustomers.Valid(FullName, EmailAddress, PhoneNumber, DOB);
+            Assert.AreNotEqual("", Error, "Expected an error for invalid date data.");
+        }
+        // Validation for Phone Number 
+        [TestMethod]
+        public void PhoneNumberMin()
+        {
+            // Create an instance of the clsCustomers class
+            clsCustomers anCustomers = new clsCustomers();
+            //String variable to store any error message
+            String Error = "";
+            string PhoneNumber = "12345678901"; // minimum valid length
+            Error = anCustomers.Valid(FullName, EmailAddress, PhoneNumber, DOB.ToString());
+            Assert.AreEqual(Error, "");
+        }
+        [TestMethod]
+        public void PhoneNumberMax()
+        {
+            // Create an instance of the clsCustomers class
+            clsCustomers anCustomers = new clsCustomers();
+            //String variable to store any error message
+            String Error = "";
+            string PhoneNumber = new string('1', 15); // maximum valid length
+            Error = anCustomers.Valid(FullName, EmailAddress, PhoneNumber, DOB.ToString());
+            Assert.AreEqual(Error, "");
+        }
+        [TestMethod]
+        public void PhoneNumberMid()
+        {
+            // Create an instance of the clsCustomers class
+            clsCustomers anCustomers = new clsCustomers();
+            //String variable to store any error message
+            String Error = "";
+            string PhoneNumber = new string('1', 12); // mid-range valid length
+            Error = anCustomers.Valid(FullName, EmailAddress, PhoneNumber, DOB.ToString());
+            Assert.AreEqual(Error, "");
+        }
+        [TestMethod]
+        public void PhoneNumberMinPlusOne()
+        {
+            // Create an instance of the clsCustomers class
+            clsCustomers anCustomers = new clsCustomers();
+            //String variable to store any error message
+            String Error = "";
+            string PhoneNumber = "12345678901"; // minimum plus one digit
+            Error = anCustomers.Valid(FullName, EmailAddress, PhoneNumber, DOB.ToString());
+            Assert.AreEqual(Error, "");
+        }
+        [TestMethod]
+        public void PhoneNumberMaxLessOne()
+        {
+            // Create an instance of the clsCustomers class
+            clsCustomers anCustomers = new clsCustomers();
+            //String variable to store any error message
+            String Error = "";
+            string PhoneNumber = new string('1', 14); // maximum length minus one
+            Error = anCustomers.Valid(FullName, EmailAddress, PhoneNumber, DOB.ToString());
+            Assert.AreEqual(Error, "");
+        }
+        [TestMethod]
+        public void PhoneNumberMinLessOne()
+        {
+            // Create an instance of the clsCustomers class
+            clsCustomers anCustomers = new clsCustomers();
+            //String variable to store any error message
+            String Error = "";
+            string PhoneNumber = "123456789"; // less than minimum length
+            Error = anCustomers.Valid(FullName, EmailAddress, PhoneNumber, DOB.ToString());
+            Assert.AreNotEqual(Error, "");
+        }
+        [TestMethod]
+        public void PhoneNumberMaxPlusOne()
+        {
+            // Create an instance of the clsCustomers class
+            clsCustomers anCustomers = new clsCustomers();
+            //String variable to store any error message
+            String Error = "";
+            string PhoneNumber = "";
+            PhoneNumber = new string('1', 15 + 1);
+            // Call the Valid method and store the result
+            Error = anCustomers.Valid(FullName, EmailAddress, PhoneNumber, DOB.ToString());
+            Assert.AreNotEqual(Error, "");
+        }
+        [TestMethod]
+        public void PhoneNumberNonDigits()
+        {
+            // Create an instance of the clsCustomers class
+            clsCustomers anCustomers = new clsCustomers();
+            //String variable to store any error message
+            String Error = "";
+            string PhoneNumber = "abcde"; // contains non-digit characters
+            Error = anCustomers.Valid(FullName, EmailAddress, PhoneNumber, DOB.ToString());
+            Assert.AreNotEqual(Error, "");
+        }
+        // Validation For Email Address
+        [TestMethod]
+        public void EmailMin()
+        {
+            // Create an instance of the clsCustomers class
+            clsCustomers anCustomers = new clsCustomers();
+            //String variable to store any error message
+            String Error = "";
+            string EmailAddress = "a@b.c"; // minimum valid length
+            Error = anCustomers.Valid(FullName, EmailAddress, PhoneNumber, DOB.ToString());
+            Assert.AreEqual(Error, "");
+        }
+        [TestMethod]
+        public void EmailMax()
+        {
+            // Create an instance of the clsCustomers class
+            clsCustomers anCustomers = new clsCustomers();
+            //String variable to store any error message
+            string Error = "";
+            string EmailAddress = "".PadRight(50, 'a'); 
+            Error = anCustomers.Valid(FullName, EmailAddress, PhoneNumber, DOB.ToString());
+            Assert.AreNotEqual(Error, "");
+        }
+
+        [TestMethod]
+        public void EmailMid()
+        {
+            // Create an instance of the clsCustomers class
+            clsCustomers anCustomers = new clsCustomers();
+            //String variable to store any error message
+            String Error = "";
+            string EmailAddress = "a@".PadRight(24, 'a') + ".com"; // mid-range valid length
+            Error = anCustomers.Valid(FullName, EmailAddress, PhoneNumber, DOB.ToString());
+            Assert.AreEqual(Error, "");
+        }
+        [TestMethod]
+        public void EmailMinPlusOne()
+        {
+            // Create an instance of the clsCustomers class
+            clsCustomers anCustomers = new clsCustomers();
+            //String variable to store any error message
+            String Error = "";
+            string EmailAddress = "a@b.cd"; // minimum plus one character
+            Error = anCustomers.Valid(FullName, EmailAddress, PhoneNumber, DOB.ToString());
+            Assert.AreEqual(Error, "");
+        }
+        [TestMethod]
+        public void EmailMaxLessOne()
+        {
+            // Create an instance of the clsCustomers class
+            clsCustomers anCustomers = new clsCustomers();
+            //String variable to store any error message
+            String Error = "";
+            string EmailAddress = new string('a', 49); // maximum length minus one
+            Error = anCustomers.Valid(FullName, EmailAddress, PhoneNumber, DOB);
+            Assert.AreNotEqual(Error, "");
+        }
+        [TestMethod]
+        public void EmailMinLessOne()
+        {
+            // Create an instance of the clsCustomers class
+            clsCustomers anCustomers = new clsCustomers();
+            //String variable to store any error message
+            String Error = "";
+            string EmailAddress = "a@bc"; // less than minimum length
+            Error = anCustomers.Valid(FullName, EmailAddress, PhoneNumber, DOB.ToString());
+            Assert.AreNotEqual(Error, "");
+        }
+        [TestMethod]
+        public void EmailNoAtSymbol()
+        {
+            // Create an instance of the clsCustomers class
+            clsCustomers anCustomers = new clsCustomers();
+            //String variable to store any error message
+            string Error = "";
+            string EmailAddress = "emailaddress.com"; // missing '@' symbol
+            Error = anCustomers.Valid(FullName, EmailAddress, PhoneNumber, DOB.ToString());
+            Assert.AreNotEqual(Error, "");
+        }
+        // Test method to check the number of records returned by the StatisticsGroupedByDOB method
+        [TestMethod]
+        public void StatStatisticsGroupedByDOB()
+        {
+            // Create an instance of the clsCustomers class
+            clsCustomers anCustomers = new clsCustomers();
+            // Call the StatisticsGroupedByDOB method and store the result in a DataTable
+            DataTable dT = anCustomers.StatisticsGroupedByDOB();
+            // Define the expected number of records
+            int noOfRecord = 7;
+            // Check if the actual number of records matches the expected number of records
+            Assert.AreEqual(noOfRecord, dT.Rows.Count);
+
+        }
+        // Test method to check the number of records returned by the StatisticsGroupedBySubscribed method
+        [TestMethod]
+        public void StatStatisticsGroupedBySubscribed()
+        {
+            // Create an instance of the clsCustomers class
+            clsCustomers anCustomers = new clsCustomers();
+            // Call the StatisticsGroupedBySubscribed method and store the result in a DataTable
+            DataTable dT = anCustomers.StatisticsGroupedBySubscribed();
+            // Define the expected number of records
+            int noOfRecord = 2;
+            // Check if the actual number of records matches the expected number of records
+            Assert.AreEqual(noOfRecord, dT.Rows.Count);
+        }
+
+
+
+
+
+
+
+
+
     }
-
-
 }
 
 
