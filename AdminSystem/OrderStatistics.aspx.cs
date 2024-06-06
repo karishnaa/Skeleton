@@ -23,12 +23,12 @@ public partial class OrderStatistics : System.Web.UI.Page
         GridViewStatGroupByOrderID.HeaderRow.Cells[0].Text = "Order Status";
 
         // retrieve data from database
-        dT = clsOrder.StatisticsGroupedByDispatched();
+        dT = clsOrder.StatisticsGroupedByIsPaid();
         //upload DataTable to the gridview
-        GridViewStatGroupByDispatched.DataSource = dT;
-        GridViewStatGroupByDispatched.DataBind();
+        GridViewStatGroupedByIsPaid.DataSource = dT;
+        GridViewStatGroupedByIsPaid.DataBind();
         //change header for first column in gridview
-        GridViewStatGroupByDispatched.HeaderRow.Cells[0].Text = "Dispatched";
+        GridViewStatGroupedByIsPaid.HeaderRow.Cells[0].Text = "Is Paid?";
 
     }
     protected void btnBack_onClick(object sender, EventArgs e)

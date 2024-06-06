@@ -185,12 +185,12 @@ namespace ClassLibrary
     }
 
     /************************ STATISTICS GROUPED BY ORDER DISPATCHED****************/
-    public DataTable StatisticsGroupedByOrderDispatched()
+    public DataTable StatisticsGroupedByOrderIsPaid()
     {
         // create an instance of the data connection
         clsDataConnection DB = new clsDataConnection();
         // execute the stored procedure
-        DB.Execute("dbo.sproc_tblOrder_StatisticsGroupedByOrderDispatched");
+        DB.Execute("dbo.sproc_tblOrder_StatisticsGroupedByOrderIsPaid");
         // return the data table
         return DB.DataTable;
     }
