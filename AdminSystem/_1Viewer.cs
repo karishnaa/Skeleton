@@ -6,7 +6,7 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using ClassLibrary;
 
-public partial class StaffViewer : System.Web.UI.Page
+public partial class _1Viewer : System.Web.UI.Page
 {
     protected void Page_Load(object sender, EventArgs e)
     {
@@ -14,18 +14,18 @@ public partial class StaffViewer : System.Web.UI.Page
         clsStaff AnStaff = new clsStaff();
         //get the data from the session object
         AnStaff = (clsStaff)Session["AnStaff"];
-        //display the Staff Name for this entry
+        //display the name for this entry
         Response.Write(AnStaff.Name);
-        //display the Staff DOB for this entry
+        //display the DateOfBirth for this entry
         Response.Write(AnStaff.DOB);
-        //display the Staff Position for this entry
+        //display the Position for this entry
         Response.Write(AnStaff.Position);
-        //display the Staff Salary for this entry
+        //display the Salary for this entry
         Response.Write(AnStaff.Salary);
-        //display the Staff Email for this entry
+        //display the Email for this entry
         Response.Write(AnStaff.Email);
-        //display the Staff IsAvailable for this entry
-        Response.Write(AnStaff.IsAvailable); 
+        //display the IsAvailable for this entry
+        Response.Write(AnStaff.IsAvailable);
 
 
 

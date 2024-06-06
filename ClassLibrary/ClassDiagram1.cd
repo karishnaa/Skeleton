@@ -1,0 +1,32 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="ClassLibrary.clsCustomers" Collapsed="true">
+    <Position X="7.25" Y="1.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAACAAAAIAAAAAAQAgAEAAAAAAgAQAAAgAAAAA=</HashCode>
+      <FileName>clsCustomers.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ClassLibrary.clsStaff">
+    <Position X="7.25" Y="2.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAACAACSAABAAgEAAAEkQAAAAIAAICAAgABIAAAgA=</HashCode>
+      <FileName>clsStaff.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ClassLibrary.clsStaffCollection">
+    <Position X="9" Y="2.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAYAAAQAAAAAYAAAAAAAAAQAAAEAAAAIAAAQQAAAAAA=</HashCode>
+      <FileName>clsStaffCollection.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="clsDataConnection" Collapsed="true">
+    <Position X="9" Y="1.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AgAEIAAABAAAAEwAQAAAAAwCCAAAQAAAAAAAAAAAAAA=</HashCode>
+      <FileName>clsDataConnection.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>
