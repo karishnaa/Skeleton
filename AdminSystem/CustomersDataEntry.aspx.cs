@@ -12,23 +12,19 @@ public partial class _1_DataEntry : System.Web.UI.Page
     int CustomerID;
 
     protected void Page_Load(object sender, EventArgs e)
-    {
-        // checks if the page is being loaded for the first time 
-        if (!IsPostBack)
-        {
-            // Check if CustomerID is in the session
-            if (Session["CustomerID"] != null)
-            {
-                // converts the customerid from the session to an int 
-                int CustomerID = Convert.ToInt32(Session["CustomerID"]);
-                // customer details will only display if customer id is valid 
+    { 
+          // converts the customerid from the session to an int 
+          CustomerID = Convert.ToInt32(Session["CustomerID"]);
+          // customer details will only display if customer id is valid 
+          if (IsPostBack == false)
+          { 
                 if (CustomerID != -1)
                 {
-                    DisplayCustomers(CustomerID);
+                    DisplayCustomers();
                 }
-            }
-        }
+           }
     }
+    
 
     protected void BtnFind_Click(object sender, EventArgs e)
     {
@@ -71,17 +67,19 @@ public partial class _1_DataEntry : System.Web.UI.Page
         string EmailAddress = TxtEmailAddress.Text;
         string PhoneNumber = txtPhoneNumber.Text;
         string DOB = txtDOB.Text;
+        string Subscribed = ChkSubscribed.Text;
         string Error = "";
         // valiadates the form input data 
         Error = anCustomers.Valid(FullName, EmailAddress, PhoneNumber, DOB);
         if (Error == "")
         {
-            // Assign values to the customer object
             anCustomers.CustomerID = CustomerID;
-            anCustomers.FullName = FullName;
-            anCustomers.EmailAddress = EmailAddress;
-            anCustomers.PhoneNumber = PhoneNumber;
-            anCustomers.DOB = Convert.ToDateTime(DOB);
+            // Assign values to the customer object  
+            anCustomers.FullName = txtFullName.Text;
+            anCustomers.EmailAddress = TxtEmailAddress.Text;
+            anCustomers.PhoneNumber = txtPhoneNumber.Text;
+            anCustomers.DOB = Convert.ToDateTime(txtDOB.Text);
+            anCustomers.Subscribed = ChkSubscribed.Checked;
             // create an instance of the customer collection class
             clsCustomerCollection CustomersList = new clsCustomerCollection();
             // only if customerid is -1, it will add a new customer
@@ -109,14 +107,12 @@ public partial class _1_DataEntry : System.Web.UI.Page
     }
 
 
-    void DisplayCustomers(int CustomerID)
+    void DisplayCustomers()
     {
-        // creates an instance of the customer collection class
-        clsCustomerCollection Customers = new clsCustomerCollection();
-        // Find the record to update
-        bool found = Customers.ThisCustomers.Find(CustomerID);
-        if (found)
-        {
+            // creates an instance of the customer collection class
+            clsCustomerCollection Customers = new clsCustomerCollection();
+            // Find the record to update
+            Customers.ThisCustomers.Find(CustomerID);
             // displys the customer details in the form
             txtCustomerID.Text = Customers.ThisCustomers.CustomerID.ToString();
             txtFullName.Text = Customers.ThisCustomers.FullName;
@@ -124,13 +120,8 @@ public partial class _1_DataEntry : System.Web.UI.Page
             txtPhoneNumber.Text = Customers.ThisCustomers.PhoneNumber;
             txtDOB.Text = Customers.ThisCustomers.DOB.ToString("dd-MM-yyyy");
             ChkSubscribed.Checked = Customers.ThisCustomers.Subscribed;
-        }
-        else
-        {
-            // displays an error message if there is no customer found
-            lblError.Text = "Customer not found.";
-        }
-    }
+     }
+        
 
 
     protected void btnReturntomm_Click(object sender, EventArgs e)
