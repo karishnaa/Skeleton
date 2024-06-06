@@ -21,7 +21,7 @@
         <asp:Button ID="btnReturn" runat="server" style="z-index: 1; left: 464px; top: 568px; position: absolute" Text="Return to Main Menu" />
         <asp:Label ID="lblOrderID" runat="server" style="z-index: 1; left: 311px; top: 407px; position: absolute" Text="Enter Order ID: "></asp:Label>
         <asp:Label ID="lblError" runat="server" style="z-index: 1; left: 21px; top: 458px; position: absolute"></asp:Label>
-        <asp:TextBox ID="txtDeliveryID" runat="server" style="z-index: 1; left: 436px; top: 406px; position: absolute"></asp:TextBox>
+        <asp:TextBox ID="txtOrderID" runat="server" Style="z-index: 1; left: 436px; top: 406px; position: absolute"></asp:TextBox>
            
     </form>
 </body>

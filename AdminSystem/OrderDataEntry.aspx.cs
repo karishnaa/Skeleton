@@ -1,137 +1,133 @@
-﻿using ClassLibrary;
-using System;
+﻿using System;
+using System.Activities.Statements;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Cryptography.X509Certificates;
+using System.ServiceModel;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
-using System.Security.Cryptography.X509Certificates;
-using System.ServiceModel;
-
+using ClassLibrary;
 
 public partial class _1_DataEntry : System.Web.UI.Page
 {
-
-    // variable to store the primary key with page level scope
-    Int32 OrderID;  
-
+    Int32 OrderID;
     protected void Page_Load(object sender, EventArgs e)
     {
-        // get number of the order to be processed
         OrderID = Convert.ToInt32(Session["OrderID"]);
         if (IsPostBack == false)
         {
-            // if this is not a new record
             if (OrderID != -1)
             {
-                // display the current data for the record
-                DisplayOrder();
+                DisplayOrders();
             }
         }
     }
 
     protected void btnOK_Click(object sender, EventArgs e)
     {
-        //create a new instance of the delivery
-        clsOrder Order = new clsOrder();
-        //capture the order id
+        clsOrder AnOrder = new clsOrder();
         string OrderID = txtOrderID.Text;
-        //capture the customer id
         string CustomerID = txtCustomerID.Text;
-        //capture the staff id
         string StaffID = txtStaffID.Text;
-        //capture the date
-        string Date = txtDate.Text;
-        //capture the is paid
+        string StockID = txtStockID.Text;
+        string OrderDate = txtOrderDate.Text;
         string IsPaid = chkIsPaid.Text;
-        //capture the notes
         string Notes = txtNotes.Text;
-        // validate the data
-        string Error = "Error";
-        Error = Order.Valid(OrderID, CustomerID, StaffID, Date, IsPaid, Notes);
+
+        string Error = "";
+
+        Error = AnOrder.Valid(OrderID, CustomerID, StaffID, StockID, OrderDate, IsPaid, Notes);
         if (Error == "")
         {
-            //capture the order id
-            Order.OrderID = Convert.ToInt32(OrderID);
-            //capture the customer id
-            Order.CustomerID = Convert.ToInt32(CustomerID);
-            //capture the staff id
-            Order.StaffID = Convert.ToInt32(StaffID);
-            //capture the date
-            Order.Date = Convert.ToDateTime(Date);
-            //capture the is paid
-            Order.IsPaid = Convert.ToBoolean(IsPaid);
-            //capture the notes
-            Order.Notes = Notes;
-            //store the address in the session object
-            Session["Order"] = Order;
-            //navigate to the view page
-            Response.Redirect("OrderViewer.aspx");
+
+
+            AnOrder.OrderID = Convert.ToInt32(txtOrderID.Text);
+            AnOrder.StockID = Convert.ToInt32(txtStockID.Text);
+            AnOrder.StaffID = Convert.ToInt32(txtStaffID.Text);
+            AnOrder.CustomerID = Convert.ToInt32(txtCustomerID.Text);
+            AnOrder.OrderDate = Convert.ToDateTime(txtOrderDate.Text);
+            AnOrder.IsPaid = chkIsPaid.Checked;
+            AnOrder.Notes = txtNotes.Text;
+
+            clsOrderCollection OrderList = new clsOrderCollection();
+            if (OrderID == -1)
+            {
+                OrderList.ThisOrder = AnOrder;
+                OrderList.Add();
+            }
+            else
+            {
+                OrderList.ThisOrder.Find(OrderID);
+                OrderList.ThisOrder = AnOrder;
+                OrderList.Update();
+            }
+            Response.Redirect("OrderList.aspx");
         }
         else
         {
             lblError.Text = Error;
         }
-
-
-
-        
     }
 
     protected void btnFind_Click(object sender, EventArgs e)
     {
-        // create an instance of the order
-        clsOrder Order = new clsOrder();
-        // variable to store the primary key
-        Int32 OrderID;
-        // variable to store the result of the find operation
-        Boolean Found = false;
-        // get the primary key entered by the user
-        OrderID = Convert.ToInt32(txtOrderID.Text);
-        // find the record
-        Found = Order.Find(OrderID);
-        // if found
-        if (Found == true)
+        try
         {
-            // display the values of the properties in the form
-            txtCustomerID.Text = Order.CustomerID.ToString();
-            txtStaffID.Text = Order.StaffID.ToString();
-            txtDate.Text = Order.Date.ToString();
-            chkIsPaid.Checked = Order.IsPaid;
-            txtNotes.Text = Order.Notes;
+            clsOrder AnOrder = new clsOrder();
+            Int32 OrderID;
+            Boolean Found = false;
+            OrderID = Convert.ToInt32(txtOrderID.Text);
+            Found = AnOrder.Find(OrderID);
+            if (Found == true)
+            {
+                txtOrderID.Text = AnOrder.OrderID.ToString();
+                txtCustomerID.Text = AnOrder.CustomerID.ToString();
+                txtStaffID.Text = AnOrder.StaffID.ToString();
+                txtStockID.Text = AnOrder.StockID.ToString();
+                txtOrderDate.Text = AnOrder.OrderDate.ToShortDateString();
+                chkIsPaid.Checked = AnOrder.IsPaid;
+                txtNotes.Text = AnOrder.Notes;
+            }
         }
-        else
+        catch
         {
-               lblError.Text = "Order not found";
+            lblError.Text = "There was a problem with the data entered";
         }
+
     }
 
-    void DisplayOrder()
+    void DisplayOrders()
     {
-        //create an instance of the order
-        clsOrder Order = new clsOrder();
-        //find the order to update
-        Order.Find(OrderID);
-        //display the data for this record
-        txtOrderID.Text = Order.OrderID.ToString();
-        txtCustomerID.Text = Order.CustomerID.ToString();
-        txtStaffID.Text = Order.StaffID.ToString();
-        txtDate.Text = Order.Date.ToString();
-        chkIsPaid.Checked = Order.IsPaid;
-        txtNotes.Text = Order.Notes;
+        clsOrderCollection OrderList = new clsOrderCollection();
+        OrderList.ThisOrder.Find(OrderID);
+        txtOrderID.Text = OrderList.ThisOrder.OrderID.ToString();
+        txtCustomerID.Text = OrderList.ThisOrder.CustomerID.ToString();
+        txtStaffID.Text = OrderList.ThisOrder.StaffID.ToString();
+        txtStockID.Text = OrderList.ThisOrder.StockID.ToString();
+        txtOrderDate.Text = OrderList.ThisOrder.OrderDate.ToShortDateString();
+        chkIsPaid.Checked = OrderList.ThisOrder.IsPaid;
+        txtNotes.Text = OrderList.ThisOrder.Notes;
     }
 
     protected void btnCancel_Click(object sender, EventArgs e)
     {
-        //redirect back to the main page
         Response.Redirect("OrderList.aspx");
     }
 
-    protected void btnReturn_Click(object sender, EventArgs e)
+    protected void btnReturnToMenu_Click(object sender, EventArgs e)
     {
-        //redirect back to the main page
-        Response.Redirect("OrderList.aspx");
+        Response.Redirect("TeamMainMenu.aspx");
     }
 
-}
 
+    protected void btnFind_Click1(object sender, EventArgs e)
+    {
+
+    }
+
+    protected void txtOrderID_TextChanged(object sender, EventArgs e)
+    {
+
+    }
+}

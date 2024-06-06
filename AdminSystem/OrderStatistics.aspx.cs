@@ -1,39 +1,38 @@
-﻿using System;
+﻿using ClassLibrary;
+using System.Data;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
-using System.Data;
-using ClassLibrary;
+
 
 public partial class OrderStatistics : System.Web.UI.Page
 {
     protected void Page_Load(object sender, EventArgs e)
     {
         clsOrder clsOrder = new clsOrder();
-        //retrive the database
-        DataTable dT = clsOrder.StatisticsGroupedByOrderStatus();
+        DataTable dT = clsOrder.StatisticsByOrderID();
 
-        // upload DataTable to the gridview
         GridViewStatGroupByOrderID.DataSource = dT;
         GridViewStatGroupByOrderID.DataBind();
 
-        // change header for first column in gridview
-        GridViewStatGroupByOrderID.HeaderRow.Cells[0].Text = "Order Status";
+        GridViewStatGroupByOrderID.HeaderRow.Cells[0].Text = "Order ID ";
 
-        // retrieve data from database
-        dT = clsOrder.StatisticsGroupedByDispatched();
-        //upload DataTable to the gridview
-        GridViewStatGroupByDispatched.DataSource = dT;
-        GridViewStatGroupByDispatched.DataBind();
-        //change header for first column in gridview
-        GridViewStatGroupByDispatched.HeaderRow.Cells[0].Text = "Dispatched";
+        dT = clsOrder.StatisticsByIsPaid();
+
+        GridViewStatGroupByIsPaid.DataSource = dT;
+        GridViewStatGroupByIsPaid.DataBind();
+
+        GridViewStatGroupByIsPaid.HeaderRow.Cells[0].Text = "Is Paid ";
+
 
     }
-    protected void btnBack_onClick(object sender, EventArgs e)
+
+    protected void btnBack_Click(object sender, EventArgs e)
     {
-        //redirect to the delivery
         Response.Redirect("OrderList.aspx");
     }
+
 }

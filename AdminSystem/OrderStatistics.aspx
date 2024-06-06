@@ -18,8 +18,8 @@
         <h3>&nbsp;</h3>
         <h3>&nbsp;</h3>
         <h3>&nbsp;</h3>
-        <h3>&nbsp;Order List - Grouped By Dispatched</h3>
-        <asp:GridView ID="GridViewStatGroupByDispatched" runat="server" style="z-index: 1; left: 10px; top: 323px; position: absolute; height: 133px; width: 187px">
+        <h3>&nbsp;Order List - Grouped By Is Paid?</h3>
+        <asp:GridView ID="GridViewStatGroupedByIsPaid" runat="server" style="z-index: 1; left: 10px; top: 323px; position: absolute; height: 133px; width: 187px">
         </asp:GridView>
         <asp:Button ID="btnBack_onClick" runat="server" style="z-index: 1; left: 347px; top: 285px; position: absolute" Text="Back to Order List" />
 
