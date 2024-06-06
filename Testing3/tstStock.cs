@@ -909,5 +909,30 @@ namespace Testing3
             //test to see that the result is correct
             Assert.AreNotEqual(Error, "");
         }
+        [TestMethod]
+        public void StatStatisticGroupedByPrice()
+        {
+            //create an instance of the class we want to create
+            clsStock anStock = new clsStock();
+            //invoke the method
+            DataTable dT = anStock.StatisticsGroupedByPrice();
+            //according to the last executed stored procedure there should be seven rows of data
+            int noOfRecord = 7;
+            //test to see that the result is correct
+            Assert.AreEqual(noOfRecord, dT.Rows.Count);
+        }
+        [TestMethod]
+        public void StatStatisticGroupedByQuantity()
+        {
+            //create an instance of the class we want to create
+            clsStock anStock = new clsStock();
+            //invoke the method
+            DataTable dT = anStock.StatisticsGroupedByQuantity();
+            //according to the last executed stored procedure there should be seven rows of data
+            int noOfRecord = 7;
+            //test to see that the result is correct
+            Assert.AreEqual(noOfRecord, dT.Rows.Count);
+        }
+
     }
 }
