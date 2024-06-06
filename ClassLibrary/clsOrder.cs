@@ -38,6 +38,23 @@ namespace ClassLibrary
             set { mStaffID = value; }
         }
 
+        //StockID private data member
+        private int mStockID;
+        //StockID public property
+        public int StockID
+        {
+            get
+            {
+                //return the private data
+                return mStockID;
+            }
+            set
+            {
+                //set the private data
+                mStockID = value;
+            }
+        }
+
         // Private data member for the Date property
         private DateTime mDate;
 
@@ -84,6 +101,7 @@ namespace ClassLibrary
                 mOrderID = Convert.ToInt32(DB.DataTable.Rows[0]["OrderID"]);
                 mCustomerID = Convert.ToInt32(DB.DataTable.Rows[0]["CustomerID"]);
                 mStaffID = Convert.ToInt32(DB.DataTable.Rows[0]["StaffID"]);
+                mStaffID = Convert.ToInt32(DB.DataTable.Rows[0]["StockID"]);
                 mDate = Convert.ToDateTime(DB.DataTable.Rows[0]["Date"]);
                 mIsPaid = Convert.ToBoolean(DB.DataTable.Rows[0]["IsPaid"]);
                 mNotes = Convert.ToString(DB.DataTable.Rows[0]["Notes"]);
@@ -100,7 +118,7 @@ namespace ClassLibrary
 
         }
 
-      public string Valid(string customerID, string staffID, string date, string notes, string isPaid, string notes1)
+      public string Valid(string customerID, string staffID, string date, string notes, string isPaid, string stockID)
         {
             // create a string variable to store the error
             String Error = "";
