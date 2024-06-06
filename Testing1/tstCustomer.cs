@@ -413,10 +413,10 @@ namespace Testing1
         {
             clsCustomers anCustomers = new clsCustomers();
             String Error = "";
-            DateTime TestDate = DateTime.Now.Date.AddYears(-99).AddDays(1); // Just under 99 years old
-            string DOB = TestDate.ToString("dd-mm-yyyy");
+            DateTime TestDate = DateTime.Now.Date.AddYears(-99).AddDays(1); 
+            string DOB = TestDate.ToString("dd-MM-yyyy"); 
             Error = anCustomers.Valid(FullName, EmailAddress, PhoneNumber, DOB);
-            Assert.AreNotEqual(Error, "");
+            Assert.AreEqual(Error, "");
         }
         [TestMethod]
         public void DOBExtremeMax()
@@ -590,7 +590,7 @@ namespace Testing1
             String Error = "";
             string EmailAddress = "a@b"; // less than minimum length
             Error = anCustomers.Valid(FullName, EmailAddress, PhoneNumber, DOB.ToString());
-            Assert.AreEqual(Error, "");
+            Assert.AreNotEqual(Error, "");
         }
         [TestMethod]
         public void EmailNoAtSymbol()
@@ -612,7 +612,7 @@ namespace Testing1
             // Call the StatisticsGroupedByDOB method and store the result in a DataTable
             DataTable dT = anCustomers.StatisticsGroupedByDOB();
             // Define the expected number of records
-            int noOfRecord = 8;
+            int noOfRecord = 9;
             // Check if the actual number of records matches the expected number of records
             Assert.AreEqual(noOfRecord, dT.Rows.Count);
 

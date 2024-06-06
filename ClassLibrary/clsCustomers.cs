@@ -193,7 +193,6 @@ namespace ClassLibrary
             {
                 Error += "Email address must be at least 5 characters long: ";
             }
-
             else if (EmailAddress.Length > 255) 
 
             {
